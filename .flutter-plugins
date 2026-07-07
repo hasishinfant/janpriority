@@ -13,6 +13,7 @@ firebase_core_web=/Users/hasishinfant/Downloads/g-hack--main/build_env/.pub-cach
 firebase_storage=/Users/hasishinfant/Downloads/g-hack--main/build_env/.pub-cache/hosted/pub.dev/firebase_storage-11.7.7/
 firebase_storage_web=/Users/hasishinfant/Downloads/g-hack--main/build_env/.pub-cache/hosted/pub.dev/firebase_storage_web-3.9.7/
 flutter_plugin_android_lifecycle=/Users/hasishinfant/Downloads/g-hack--main/build_env/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.22/
+flutter_tts=/Users/hasishinfant/Downloads/g-hack--main/build_env/.pub-cache/hosted/pub.dev/flutter_tts-4.2.5/
 geolocator=/Users/hasishinfant/Downloads/g-hack--main/build_env/.pub-cache/hosted/pub.dev/geolocator-12.0.0/
 geolocator_android=/Users/hasishinfant/Downloads/g-hack--main/build_env/.pub-cache/hosted/pub.dev/geolocator_android-4.6.1/
 geolocator_apple=/Users/hasishinfant/Downloads/g-hack--main/build_env/.pub-cache/hosted/pub.dev/geolocator_apple-2.3.9/

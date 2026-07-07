@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 
 // Placeholder imports for screens
 // import '../features/citizen/onboarding/onboarding_screen.dart';
+import '../features/citizen/onboarding/splash_screen.dart';
 import '../features/citizen/onboarding/onboarding_screen.dart';
 import '../features/citizen/onboarding/login_screen.dart';
 import '../features/citizen/status_tracker/citizen_home_screen.dart';
@@ -16,6 +17,10 @@ final goRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
+      builder: (context, state) => const SplashScreen(),
+    ),
+    GoRoute(
+      path: '/citizen/onboarding',
       builder: (context, state) => const OnboardingScreen(),
     ),
     GoRoute(

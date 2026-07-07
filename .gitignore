@@ -50,5 +50,7 @@ functions/node_modules/
 # Local build environment and credentials
 build_env/
 serviceAccountKey.json
+.env
+.env.*
 
 

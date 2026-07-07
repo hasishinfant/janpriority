@@ -21,7 +21,10 @@ class JanPriorityApp extends ConsumerWidget {
     return MaterialApp.router(
       title: 'JanPriority',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF002244),
+          primary: const Color(0xFF002244),
+        ),
         useMaterial3: true,
       ),
       routerConfig: goRouter,

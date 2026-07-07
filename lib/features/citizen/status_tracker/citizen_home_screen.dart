@@ -8,6 +8,10 @@ import '../../../shared/models/submission.dart';
 import '../../../shared/models/cluster.dart';
 import '../../../shared/models/ranking.dart';
 
+// ─── Design Tokens ───────────────────────────────────────────────────────────
+const _navy = Color(0xFF002244);
+const _saffron = Color(0xFFFF9933);
+
 class CitizenHomeScreen extends ConsumerStatefulWidget {
   const CitizenHomeScreen({super.key});
 
@@ -17,119 +21,237 @@ class CitizenHomeScreen extends ConsumerStatefulWidget {
 
 class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
   int _currentTab = 0; // 0: My Submissions, 1: Community Board
-  final Set<String> _disclosedNames = {}; // Track which clusters user has opted to share real name with
+  final Set<String> _disclosedNames = {};
 
   @override
   Widget build(BuildContext context) {
     final lang = ref.watch(selectedLanguageProvider);
     final localState = ref.watch(localDataProvider);
+    final userPhone = ref.watch(userPhoneProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          _currentTab == 0
-              ? getLocalizedText('my_submissions', lang)
-              : getLocalizedText('community_board', lang),
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          // Offline/Online Emulator Demo Toggle
-          TextButton(
-            onPressed: () {
-              ref.read(localDataProvider.notifier).setOffline(!localState.isOffline);
-            },
-            child: Row(
-              children: [
-                Icon(
-                  localState.isOffline ? Icons.signal_wifi_off : Icons.wifi,
-                  size: 20,
-                  color: localState.isOffline ? Colors.red : Colors.green,
+      backgroundColor: const Color(0xFFF5F7FA),
+      body: SafeArea(
+        child: Column(
+          children: [
+            // ── Government-Grade Header ──────────────────────────────────────
+            _buildHeader(context, lang, localState, userPhone),
+
+            // ── Offline / Reconnecting Banner ────────────────────────────────
+            if (localState.isOffline)
+              Container(
+                width: double.infinity,
+                color: const Color(0xFFFFEBEE),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.red,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        getLocalizedText('offline_banner', lang),
+                        style: const TextStyle(
+                          color: Color(0xFFC62828),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => ref.read(localDataProvider.notifier).setOffline(false),
+                      child: const Text(
+                        'Retry',
+                        style: TextStyle(
+                          color: Color(0xFFC62828),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 6),
-                Text(
-                  localState.isOffline ? 'Offline' : 'Online',
+              ),
+
+            // ── Tab Bar ──────────────────────────────────────────────────────
+            Container(
+              color: Colors.white,
+              child: Row(
+                children: [
+                  _TabItem(
+                    label: getLocalizedText('my_submissions', lang),
+                    icon: Icons.inbox_outlined,
+                    isSelected: _currentTab == 0,
+                    onTap: () => setState(() => _currentTab = 0),
+                  ),
+                  _TabItem(
+                    label: getLocalizedText('community_board', lang),
+                    icon: Icons.people_outline,
+                    isSelected: _currentTab == 1,
+                    onTap: () => setState(() => _currentTab = 1),
+                  ),
+                ],
+              ),
+            ),
+
+            // ── Content Area ─────────────────────────────────────────────────
+            Expanded(
+              child: _currentTab == 0
+                  ? _buildMySubmissionsTab(localState.submissions, localState, lang)
+                  : _buildCommunityBoardTab(localState.clusters, localState.upvotedClusterIds, lang),
+            ),
+
+            // ── Bottom Action Bar (one-handed, 56dp min touch target) ─────────
+            _buildBottomActionBar(context, lang, localState),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHeader(
+    BuildContext context,
+    String lang,
+    LocalDataState localState,
+    String userPhone,
+  ) {
+    return Container(
+      color: _navy,
+      padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
+      child: Row(
+        children: [
+          // Emblem
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(color: _saffron, width: 2),
+            ),
+            child: const Icon(Icons.account_balance, size: 22, color: _navy),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'JanPriority',
                   style: TextStyle(
-                    color: localState.isOffline ? Colors.red : Colors.green,
+                    color: Colors.white,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+                Text(
+                  userPhone,
+                  style: const TextStyle(
+                    color: Colors.white60,
+                    fontSize: 12,
                   ),
                 ),
               ],
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.dashboard_customize, size: 28),
-            tooltip: 'MP Dashboard',
-            onPressed: () => context.go('/dashboard/overview'),
-          ),
-          IconButton(
-            icon: const Icon(Icons.logout, size: 28),
-            onPressed: () => context.go('/'),
-          )
-        ],
-      ),
-      body: Column(
-        children: [
-          // Graceful Offline / Reconnecting Banner
-          if (localState.isOffline)
-            Container(
-              color: Colors.red[100],
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    width: 16,
-                    height: 16,
-                    child: CircularProgressIndicator(strokeWidth: 2, color: Colors.red),
-                  ),
-                  const SizedBox(width: 12),
-                  Text(
-                    getLocalizedText('offline_banner', lang),
-                    style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                ],
+          // Connectivity Toggle (demo)
+          Semantics(
+            label: localState.isOffline ? 'Currently offline. Tap to go online.' : 'Currently online. Tap to simulate offline.',
+            button: true,
+            child: IconButton(
+              icon: Icon(
+                localState.isOffline ? Icons.signal_wifi_off : Icons.wifi,
+                color: localState.isOffline ? _saffron : Colors.greenAccent,
+                size: 22,
               ),
+              tooltip: localState.isOffline ? getLocalizedText('offline', lang) : getLocalizedText('online', lang),
+              onPressed: () {
+                ref.read(localDataProvider.notifier).setOffline(!localState.isOffline);
+              },
             ),
-          
+          ),
+          // MP Dashboard
+          Semantics(
+            label: getLocalizedText('mp_dashboard', lang),
+            button: true,
+            child: IconButton(
+              icon: const Icon(Icons.bar_chart_rounded, color: Colors.white70, size: 22),
+              tooltip: getLocalizedText('mp_dashboard', lang),
+              onPressed: () => context.go('/dashboard/overview'),
+            ),
+          ),
+          // Logout
+          Semantics(
+            label: getLocalizedText('logout', lang),
+            button: true,
+            child: IconButton(
+              icon: const Icon(Icons.logout, color: Colors.white70, size: 22),
+              tooltip: getLocalizedText('logout', lang),
+              onPressed: () => context.go('/'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBottomActionBar(BuildContext context, String lang, LocalDataState localState) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x1A000000),
+            blurRadius: 8,
+            offset: Offset(0, -2),
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Row(
+        children: [
+          // Voice button — primary CTA
           Expanded(
-            child: _currentTab == 0
-                ? _buildMySubmissionsTab(localState.submissions, localState, lang)
-                : _buildCommunityBoardTab(localState.clusters, localState.upvotedClusterIds, lang),
+            flex: 3,
+            child: _ActionButton(
+              icon: Icons.mic,
+              label: getLocalizedText('voice', lang),
+              color: const Color(0xFFE65100),
+              filled: true,
+              onTap: () => context.push('/citizen/submit?mode=voice'),
+            ),
+          ),
+          const SizedBox(width: 10),
+          // Text button
+          Expanded(
+            flex: 2,
+            child: _ActionButton(
+              icon: Icons.edit_outlined,
+              label: getLocalizedText('text', lang),
+              color: _navy,
+              filled: false,
+              onTap: () => context.push('/citizen/submit?mode=text'),
+            ),
+          ),
+          const SizedBox(width: 10),
+          // Photo button
+          Expanded(
+            flex: 2,
+            child: _ActionButton(
+              icon: Icons.camera_alt_outlined,
+              label: getLocalizedText('photo', lang),
+              color: _navy,
+              filled: false,
+              onTap: () => context.push('/citizen/submit?mode=photo'),
+            ),
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentTab,
-        onTap: (index) {
-          setState(() {
-            _currentTab = index;
-          });
-        },
-        selectedItemColor: Colors.teal[800],
-        unselectedItemColor: Colors.grey,
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.inbox, size: 28),
-            label: getLocalizedText('my_submissions', lang),
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.group, size: 28),
-            label: getLocalizedText('community_board', lang),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _showSubmissionModeBottomSheet(context, lang);
-        },
-        icon: const Icon(Icons.add, size: 24),
-        label: Text(
-          getLocalizedText('new_request', lang),
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.teal[800],
-        foregroundColor: Colors.white,
       ),
     );
   }
@@ -147,6 +269,12 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
               Text(
                 getLocalizedText('no_submissions', lang),
                 style: TextStyle(fontSize: 18, color: Colors.grey[600], fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                getLocalizedText('no_submissions_hint', lang),
+                style: TextStyle(fontSize: 14, color: Colors.grey[400]),
+                textAlign: TextAlign.center,
               ),
             ],
           ),
@@ -193,91 +321,128 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
         Color statusTextColor = Colors.grey[700]!;
 
         if (sub.status == 'Submitted') {
-          statusLabel = 'Submitted';
+          statusLabel = getLocalizedText('status_submitted', lang);
           statusBgColor = Colors.blue[50]!;
           statusTextColor = Colors.blue[700]!;
         } else if (sub.status == 'Under Review') {
-          statusLabel = 'Under Review';
+          statusLabel = getLocalizedText('status_under_review', lang);
           statusBgColor = Colors.orange[50]!;
-          statusTextColor = Colors.orange[850]!;
+          statusTextColor = Colors.orange[800]!;
         } else if (sub.status == 'Processed' && cluster.id.isNotEmpty) {
-          statusLabel = 'Clustered (${cluster.submissionCount} reports)';
+          statusLabel = '${getLocalizedText('status_clustered_prefix', lang)} (${cluster.submissionCount} ${getLocalizedText('reports', lang)})';
           statusBgColor = Colors.purple[50]!;
           statusTextColor = Colors.purple[700]!;
         } else if (sub.status == 'Prioritized' && ranking.rank > 0) {
-          statusLabel = 'Prioritized (Rank #${ranking.rank})';
+          statusLabel = '${getLocalizedText('status_prioritized_prefix', lang)} (#${ranking.rank})';
           statusBgColor = Colors.indigo[50]!;
           statusTextColor = Colors.indigo[700]!;
         } else if (sub.status == 'In Progress') {
-          statusLabel = 'In Progress';
+          statusLabel = getLocalizedText('status_in_progress', lang);
           statusBgColor = Colors.amber[50]!;
           statusTextColor = Colors.amber[900]!;
         } else if (sub.status == 'Resolved') {
-          statusLabel = 'Resolved';
+          statusLabel = getLocalizedText('status_resolved', lang);
           statusBgColor = Colors.green[50]!;
           statusTextColor = Colors.green[700]!;
         } else if (sub.status == 'rejected') {
-          statusLabel = 'Rejected (Irrelevant)';
+          statusLabel = getLocalizedText('status_rejected', lang);
           statusBgColor = Colors.red[50]!;
           statusTextColor = Colors.red[700]!;
         }
 
-        return Card(
-          margin: const EdgeInsets.only(bottom: 12),
-          child: ListTile(
-            contentPadding: const EdgeInsets.all(16),
-            leading: CircleAvatar(
-              radius: 24,
-              backgroundColor: modeColor.withOpacity(0.1),
-              child: Icon(modeIcon, color: modeColor, size: 24),
+        return Semantics(
+          label: 'Submission: ${sub.originalText}. Status: $statusLabel.',
+          button: true,
+          child: Card(
+            margin: const EdgeInsets.only(bottom: 12),
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(color: Colors.grey.shade200),
             ),
-            title: Text(
-              sub.originalText, 
-              maxLines: 2, 
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87),
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                Row(
+            color: Colors.white,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: () => _showSubmissionDetailsBottomSheet(context, sub, cluster, ranking, lang),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Mode icon
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      width: 48,
+                      height: 48,
                       decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(4),
+                        color: modeColor.withOpacity(0.08),
+                        shape: BoxShape.circle,
                       ),
-                      child: Text(sub.category, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                      child: Icon(modeIcon, color: modeColor, size: 24),
+                    ),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            sub.originalText,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF1A1A2E),
+                              height: 1.4,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            children: [
+                              _CategoryChip(label: sub.category),
+                              const SizedBox(width: 8),
+                              Icon(Icons.location_on_outlined,
+                                  size: 13, color: Colors.grey[500]),
+                              const SizedBox(width: 2),
+                              Expanded(
+                                child: Text(
+                                  sub.extractedLocation?['village'] ??
+                                      sub.extractedLocation?['ward'] ??
+                                      'General',
+                                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            formattedDate,
+                            style: TextStyle(fontSize: 11, color: Colors.grey[500]),
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(width: 8),
-                    Text(
-                      sub.extractedLocation?['village'] ?? sub.extractedLocation?['ward'] ?? 'General',
-                      style: const TextStyle(fontSize: 13, color: Colors.grey),
+                    // Status Badge
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: statusBgColor,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        statusLabel,
+                        style: TextStyle(
+                          color: statusTextColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 11,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 6),
-                Text(formattedDate, style: const TextStyle(fontSize: 12, color: Colors.grey)),
-              ],
-            ),
-            trailing: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: BoxDecoration(
-                color: statusBgColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                statusLabel,
-                style: TextStyle(
-                  color: statusTextColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
               ),
             ),
-            onTap: () => _showSubmissionDetailsBottomSheet(context, sub, cluster, ranking, lang),
           ),
         );
       },
@@ -320,14 +485,14 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'Submission Trace Details',
+                    getLocalizedText('submission_details', lang),
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
                   
                   // Text Content
                   Text(
-                    'Grievance Text:',
+                    getLocalizedText('grievance_text', lang),
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.grey[600]),
                   ),
                   const SizedBox(height: 4),
@@ -341,16 +506,16 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildDetailBadge('Category', sub.category),
-                      _buildDetailBadge('Source Intake', sub.mode.toUpperCase()),
+                      _buildDetailBadge(getLocalizedText('category', lang), sub.category),
+                      _buildDetailBadge(getLocalizedText('source_intake', lang), sub.mode.toUpperCase()),
                     ],
                   ),
                   const Divider(height: 32),
 
                   // Status flow visual step indicator
-                  const Text(
-                    'Status Progression Tracker',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  Text(
+                    getLocalizedText('status_tracker', lang),
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
                   Column(
@@ -361,9 +526,9 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
                       
                       String detailSuffix = '';
                       if (stepName == 'Clustered' && cluster.id.isNotEmpty) {
-                        detailSuffix = ' — clustered with ${cluster.submissionCount} reports';
+                        detailSuffix = ' — ${getLocalizedText('reports', lang)}: ${cluster.submissionCount}';
                       } else if (stepName == 'Prioritized' && ranking.rank > 0) {
-                        detailSuffix = ' — Rank #${ranking.rank} (AI Justified)';
+                        detailSuffix = ' — ${getLocalizedText('rank', lang)} #${ranking.rank} (${getLocalizedText('ai_justified', lang)})';
                       }
 
                       return Row(
@@ -398,9 +563,9 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
 
                   // AI Rank & justification detail
                   if (ranking.rank > 0) ...[
-                    const Text(
-                      'MP Office Action Justification',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    Text(
+                      getLocalizedText('mp_justification', lang),
+                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
                     Container(
@@ -416,9 +581,9 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
 
                   // Linked pending MPLADS project alert
                   if (cluster.linkedMpladsWorkId != null) ...[
-                    const Text(
-                      'Linked Ongoing Government Project',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    Text(
+                      getLocalizedText('linked_project', lang),
+                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
                     Container(
@@ -519,9 +684,9 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
                             });
                           },
                         ),
-                        const Text(
-                          'Disclose name to MP Office',
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black54),
+                        Text(
+                          getLocalizedText('disclose_name', lang),
+                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black54),
                         ),
                       ],
                     ),
@@ -536,12 +701,11 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
                             size: 24,
                           ),
                           onPressed: () {
-                            // Upvote trigger with client-side rate-limiting simulator
                             ref.read(localDataProvider.notifier).toggleUpvote(c.id);
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Security audit verification check passed (1 vote per verified account limit).'),
-                                duration: Duration(seconds: 1),
+                              SnackBar(
+                                content: Text(getLocalizedText('vote_verified', lang)),
+                                duration: const Duration(seconds: 2),
                               ),
                             );
                           },
@@ -566,93 +730,157 @@ class _CitizenHomeScreenState extends ConsumerState<CitizenHomeScreen> {
     );
   }
 
-  void _showSubmissionModeBottomSheet(BuildContext context, String lang) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 28.0, horizontal: 16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                lang == 'hi' 
-                    ? 'आप शिकायत कैसे दर्ज करना चाहेंगे?' 
-                    : (lang == 'kn' ? 'ನೀವು ಹೇಗೆ ಸಲ್ಲಿಸಲು ಬಯಸುತ್ತೀರಿ?' : 'How would you like to submit?'),
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _ModeButton(
-                    icon: Icons.mic,
-                    label: lang == 'hi' ? 'आवाज़' : (lang == 'kn' ? 'ಧ್ವನಿ' : 'Voice'),
-                    color: Colors.orange,
-                    onTap: () {
-                      Navigator.pop(context);
-                      context.push('/citizen/submit?mode=voice');
-                    },
-                  ),
-                  _ModeButton(
-                    icon: Icons.text_fields,
-                    label: lang == 'hi' ? 'पाठ' : (lang == 'kn' ? 'ಪಠ್ಯ' : 'Text'),
-                    color: Colors.teal,
-                    onTap: () {
-                      Navigator.pop(context);
-                      context.push('/citizen/submit?mode=text');
-                    },
-                  ),
-                  _ModeButton(
-                    icon: Icons.camera_alt,
-                    label: lang == 'hi' ? 'फ़ोटो' : (lang == 'kn' ? 'ಫೋಟೋ' : 'Photo'),
-                    color: Colors.green,
-                    onTap: () {
-                      Navigator.pop(context);
-                      context.push('/citizen/submit?mode=photo');
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
-        );
-      },
-    );
-  }
 }
 
-class _ModeButton extends StatelessWidget {
-  final IconData icon;
+// ─── Supporting Widgets ───────────────────────────────────────────────────────
+
+class _TabItem extends StatelessWidget {
   final String label;
-  final Color color;
+  final IconData icon;
+  final bool isSelected;
   final VoidCallback onTap;
 
-  const _ModeButton({required this.icon, required this.label, required this.color, required this.onTap});
+  const _TabItem({
+    required this.label,
+    required this.icon,
+    required this.isSelected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        width: 100,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CircleAvatar(
-              radius: 30,
-              backgroundColor: color.withOpacity(0.1),
-              child: Icon(icon, size: 28, color: color),
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: isSelected ? _navy : Colors.transparent,
+                width: 2.5,
+              ),
             ),
-            const SizedBox(height: 8),
-            Text(label, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
-          ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 18,
+                color: isSelected ? _navy : Colors.grey[500],
+              ),
+              const SizedBox(width: 6),
+              Flexible(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight:
+                        isSelected ? FontWeight.bold : FontWeight.normal,
+                    color: isSelected ? _navy : Colors.grey[600],
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+class _ActionButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final bool filled;
+  final VoidCallback onTap;
+
+  const _ActionButton({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.filled,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      label: '$label — submit $label complaint',
+      button: true,
+      child: Material(
+        color: filled ? color : Colors.transparent,
+        borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            height: 56, // minimum 56dp touch target
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: filled ? null : Border.all(color: color.withOpacity(0.4)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, color: filled ? Colors.white : color, size: 20),
+                const SizedBox(width: 6),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: filled ? Colors.white : color,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CategoryChip extends StatelessWidget {
+  final String label;
+  const _CategoryChip({required this.label});
+
+  Color _colorForCategory(String cat) {
+    switch (cat.toLowerCase()) {
+      case 'water': return const Color(0xFF1565C0);
+      case 'roads': return const Color(0xFF6D4C41);
+      case 'electricity': return const Color(0xFFF57F17);
+      case 'sanitation': return const Color(0xFF2E7D32);
+      case 'education': return const Color(0xFF6A1B9A);
+      case 'health': return const Color(0xFFC62828);
+      default: return const Color(0xFF37474F);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final color = _colorForCategory(label);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: color.withOpacity(0.2)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+          color: color,
+        ),
+      ),
+    );
+  }
+}
+
+// _ModeButton removed — replaced by _ActionButton in the persistent bottom bar
