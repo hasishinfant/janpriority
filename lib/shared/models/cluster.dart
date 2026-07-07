@@ -10,6 +10,10 @@ class Cluster {
   final Map<String, dynamic>? centroid; // lat, lng
   final Map<String, dynamic>? enrichment; // census, infra, devPlan
   final String status;
+  final String? linkedMpladsWorkId;
+  final String? linkedMpladsWorkDesc;
+  final double? linkedMpladsWorkDistance;
+  final String? linkedMpladsWorkDate;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -23,6 +27,10 @@ class Cluster {
     this.centroid,
     this.enrichment,
     required this.status,
+    this.linkedMpladsWorkId,
+    this.linkedMpladsWorkDesc,
+    this.linkedMpladsWorkDistance,
+    this.linkedMpladsWorkDate,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -39,8 +47,15 @@ class Cluster {
       centroid: data['centroid'],
       enrichment: data['enrichment'],
       status: data['status'] ?? 'Under Review',
+      linkedMpladsWorkId: data['linkedMpladsWorkId'],
+      linkedMpladsWorkDesc: data['linkedMpladsWorkDesc'],
+      linkedMpladsWorkDistance: data['linkedMpladsWorkDistance'] != null 
+          ? (data['linkedMpladsWorkDistance'] as num).toDouble() 
+          : null,
+      linkedMpladsWorkDate: data['linkedMpladsWorkDate'],
       createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
       updatedAt: (data['updatedAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
     );
   }
 }
+

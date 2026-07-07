@@ -9,62 +9,83 @@ class OverviewScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final localState = ref.watch(localDataProvider);
-    final submissions = localState.submissions;
+    final metadata = localState.mpMetadata;
+    final demographics = localState.demographics;
+    final works = localState.mpladsWorks;
     final clusters = localState.clusters;
 
-    // Calculate actual KPI metrics
-    final totalSubmissions = submissions.length + 340 + 154; // add initial dummy data counts
-    final activeClusters = clusters.length;
-    
-    // Group by category for the chart
-    final categoryCounts = <String, int>{
-      'Education': 0,
-      'Water': 0,
-      'Health': 0,
-      'Roads': 0,
-      'Sanitation': 0,
-      'Other': 0
-    };
-    for (var c in clusters) {
-      categoryCounts[c.category] = (categoryCounts[c.category] ?? 0) + c.submissionCount;
+    // A. Parse MP Fund Information
+    final info = metadata['mp_info'] ?? {};
+    final summary = metadata['fund_summary'] ?? {};
+    final mpName = info['name'] ?? 'Shri Narayana Koragappa';
+    final mpHouse = info['house'] ?? 'Rajya Sabha';
+    final mpTerm = info['term'] ?? '2020-26';
+
+    final allocated = (summary['allocated_amount_cr'] ?? 19.6).toDouble();
+    final spent = (summary['total_expenditure_cr'] ?? 13.0).toDouble();
+    final unspent = (summary['unspent_amount_cr'] ?? 6.6).toDouble();
+    final paymentGap = (summary['payment_gap_pct'] ?? 79.6).toDouble();
+
+    // B. Calculate SC/ST compliance meter
+    double scStSpentLakh = 0.0;
+    for (var w in works) {
+      if (w['sc_st_tagged'] == true) {
+        scStSpentLakh += (w['amount'] ?? 0.0).toDouble();
+      }
     }
+    final scStSpentCr = scStSpentLakh / 100.0; // 100 lakh = 1 Cr
+    final scStCompliancePct = allocated > 0 ? (scStSpentCr / allocated) * 100 : 0.0;
 
-    // Silent Signal calculation using static reference datasets
-    // Census + UDISE indicators:
-    final staticNeeds = [
-      {'name': 'Village East', 'scStPercent': 50.0, 'schoolDistKm': 12.0, 'weight': 42},
-      {'name': 'Ward 4', 'scStPercent': 50.0, 'schoolDistKm': 8.5, 'weight': 494}, // high reports
-      {'name': 'Ward 3', 'scStPercent': 11.1, 'schoolDistKm': 3.0, 'weight': 5},
-      {'name': 'Ward 2', 'scStPercent': 20.0, 'schoolDistKm': 2.5, 'weight': 0},   // 0 reports
-      {'name': 'Ward 1', 'scStPercent': 10.0, 'schoolDistKm': 1.2, 'weight': 10},
-    ];
+    // C. Silent Signal calculation: Census villages with zero or low complaints
+    final silentSignals = demographics.map((village) {
+      final name = village['village_name'] as String;
+      final code = village['location_code'] as String;
+      final scRange = village['sc_population_pct_range'] as String?;
+      final stRange = village['st_population_pct_range'] as String?;
+      final school = village['schools_in_village_pp_p_m_s'] as String?;
+      final medical = village['medical_facility_in_village'] as String?;
+      
+      // Count citizen submissions matching this village ward
+      final reportCount = clusters
+          .where((c) => c.ward.toLowerCase() == name.toLowerCase() || c.ward.toLowerCase() == code.toLowerCase())
+          .fold<int>(0, (sum, c) => sum + c.submissionCount);
 
-    // Silent Signal score = Demographic Need * (1.0 - Participation Rate)
-    final silentSignals = staticNeeds.map((place) {
-      final name = place['name'] as String;
-      final scSt = place['scStPercent'] as double;
-      final dist = place['schoolDistKm'] as double;
+      // Need Indicator: composite index of SC/ST and facilities availability
+      double scWeight = 0.0;
+      if (scRange != null) {
+        if (scRange.contains('21-30')) scWeight = 0.25;
+        else if (scRange.contains('11-20')) scWeight = 0.15;
+        else if (scRange.contains('5-10')) scWeight = 0.08;
+      }
       
-      // Calculate active report volume in that ward
-      final clusterMatch = clusters.where((c) => c.ward.toLowerCase() == name.toLowerCase());
-      final reportCount = clusterMatch.fold<int>(0, (sum, c) => sum + c.submissionCount);
+      double stWeight = 0.0;
+      if (stRange != null && stRange.toLowerCase().contains('less than 5')) {
+        stWeight = 0.03;
+      }
 
-      // Need Indicator: composite index of SC/ST and school distance
-      final needIndex = (scSt / 100 * 0.5) + (dist / 15.0 * 0.5); 
+      final hasNoMedical = medical == 'No';
+      final hasNoSchool = school == 'No' || (school != null && school.contains('all 5-10km away'));
       
-      // Participation: normalized report count (max 500 reports)
-      final participationRate = Math.min(reportCount / 500.0, 1.0);
+      // Gap index: no medical (+0.35), no school (+0.25), SC/ST percentage (+0.4)
+      final needScore = (hasNoMedical ? 0.35 : 0.05) + 
+                         (hasNoSchool ? 0.25 : 0.05) + 
+                         ((scWeight + stWeight) * 1.5);
       
-      // Silent Signal = high need, low participation
-      final silentSignalScore = needIndex * (1.0 - participationRate);
+      // Participation rate (normalized count, max 100 for scaling)
+      final participation = Math.min(reportCount / 100.0, 1.0);
+      
+      // Silent Signal = high need, low participation (potential digital divide)
+      final silentSignalScore = needScore * (1.0 - participation);
 
       return {
         'name': name,
-        'need': needIndex,
+        'code': code,
+        'sc': scRange ?? '0%',
+        'st': stRange ?? '0%',
+        'medical': medical ?? 'Unknown',
+        'school': school ?? 'Unknown',
         'reports': reportCount,
         'score': silentSignalScore,
-        'scSt': scSt,
-        'dist': dist
       };
     }).toList();
 
@@ -75,231 +96,317 @@ class OverviewScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard Overview'),
+        title: Text('$mpName ($mpHouse, $mpTerm)'),
+        centerTitle: false,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Key Performance Indicators', style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
+            // 1. MP Fund Utilization Panel
+            Text(
+              'MPLADS Fund Utilization Dashboard',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 16),
             Wrap(
               spacing: 16,
               runSpacing: 16,
               children: [
-                _buildKpiCard(context, 'Total Submissions', '$totalSubmissions', Icons.inbox, Colors.blue),
-                _buildKpiCard(context, 'Active Clusters', '$activeClusters', Icons.workspaces, Colors.orange),
-                _buildKpiCard(context, 'Top Category', 'Water / Edu', Icons.category, Colors.green),
-                _buildKpiCard(context, 'Critical Needs Wards', '2', Icons.report_problem, Colors.red),
+                _buildStatCard(context, 'Allocated Amount', '₹${allocated.toStringAsFixed(2)} CR', Icons.account_balance, Colors.blue),
+                _buildStatCard(context, 'Total Expenditure', '₹${spent.toStringAsFixed(2)} CR', Icons.trending_up, Colors.green),
+                _buildStatCard(context, 'Unspent Balance', '₹${unspent.toStringAsFixed(2)} CR', Icons.account_balance_wallet, Colors.orange),
+                _buildStatCard(context, 'Payment Gap', '${paymentGap.toStringAsFixed(1)}%', Icons.hourglass_empty, Colors.red),
               ],
             ),
             const SizedBox(height: 32),
-            
-            // Main content side-by-side or stacked
-            isDesktop 
-              ? Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Category Breakdown', style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 16),
-                          _buildCategoryChart(categoryCounts),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 24),
-                    Expanded(
-                      flex: 1,
-                      child: _buildSilentSignalsPanel(context, silentSignals),
-                    )
-                  ],
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Category Breakdown', style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 16),
-                    _buildCategoryChart(categoryCounts),
-                    const SizedBox(height: 32),
-                    _buildSilentSignalsPanel(context, silentSignals),
-                  ],
-                ),
-          ],
-        ),
-      ),
-    );
-  }
 
-  Widget _buildCategoryChart(Map<String, int> counts) {
-    final entries = counts.entries.toList();
-    final colors = [Colors.blue, Colors.orange, Colors.green, Colors.purple, Colors.red, Colors.teal];
+            // 2. SC/ST Mandate Quota Compliance
+            _buildComplianceProgressBar(context, scStSpentCr, scStCompliancePct),
+            const SizedBox(height: 32),
 
-    return SizedBox(
-      height: 300,
-      child: Card(
-        elevation: 2,
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: BarChart(
-            BarChartData(
-              alignment: BarChartAlignment.spaceAround,
-              maxY: entries.map((e) => e.value.toDouble()).reduce((a, b) => a > b ? a : b) + 50,
-              barGroups: List.generate(entries.length, (idx) {
-                return BarChartGroupData(
-                  x: idx,
-                  barRods: [
-                    BarChartRodData(
-                      toY: entries[idx].value.toDouble() + 5, // offset for visual zero values
-                      color: colors[idx % colors.length],
-                      width: 22,
-                      borderRadius: BorderRadius.circular(4),
-                    )
-                  ],
-                );
-              }),
-              titlesData: FlTitlesData(
-                show: true,
-                bottomTitles: AxisTitles(
-                  sideTitles: SideTitles(
-                    showTitles: true,
-                    getTitlesWidget: (double value, TitleMeta meta) {
-                      const style = TextStyle(fontWeight: FontWeight.bold, fontSize: 11);
-                      if (value.toInt() >= 0 && value.toInt() < entries.length) {
-                        return SideTitleWidget(
-                          axisSide: meta.axisSide,
-                          child: Text(entries[value.toInt()].key, style: style),
-                        );
-                      }
-                      return const Text('');
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSilentSignalsPanel(BuildContext context, List<Map<String, dynamic>> signals) {
-    return Card(
-      elevation: 3,
-      color: Colors.red[50]?.withOpacity(0.3),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: Colors.red[100]!, width: 1),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(Icons.warning_amber_rounded, color: Colors.red[700]),
-                const SizedBox(width: 8),
-                Text(
-                  'Silent Signal Panel',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, color: Colors.red[800]),
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            const Text(
-              'Highlights locations with high demographic need but low citizen report volumes (potential digital divide).',
-              style: TextStyle(fontSize: 12, color: Colors.black54),
-            ),
-            const Divider(height: 24),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: signals.length,
-              itemBuilder: (context, idx) {
-                final s = signals[idx];
-                final score = s['score'] as double;
-                final reports = s['reports'] as int;
-
-                // Only show as critical if silent signal score is high (> 0.2) and reports are low
-                final isCritical = score > 0.3;
-
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: Row(
+            // 3. Yearly Trends and Silent Signals Panel
+            isDesktop
+                ? Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(
-                        isCritical ? Icons.report : Icons.info_outline,
-                        color: isCritical ? Colors.red : Colors.grey,
-                      ),
-                      const SizedBox(width: 12),
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              s['name'],
-                              style: TextStyle(fontWeight: FontWeight.bold, color: isCritical ? Colors.red[900] : Colors.black87),
-                            ),
-                            Text(
-                              'SC/ST: ${s['scSt'].toStringAsFixed(0)}% • School: ${s['dist'].toStringAsFixed(1)}km',
-                              style: const TextStyle(fontSize: 11, color: Colors.grey),
-                            ),
-                            Text(
-                              'Reports: $reports',
-                              style: TextStyle(fontSize: 11, color: isCritical ? Colors.red : Colors.grey[700]),
-                            ),
-                          ],
-                        ),
+                        flex: 5,
+                        child: _buildYearlyTrendsSection(context, metadata['yearly_trends']),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: isCritical ? Colors.red[100] : Colors.grey[200],
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          'Signal: ${(score * 100).toStringAsFixed(0)}%',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: isCritical ? Colors.red[900] : Colors.black54,
-                          ),
-                        ),
-                      )
+                      const SizedBox(width: 24),
+                      Expanded(
+                        flex: 4,
+                        child: _buildSilentSignalsPanel(context, silentSignals),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      _buildYearlyTrendsSection(context, metadata['yearly_trends']),
+                      const SizedBox(height: 32),
+                      _buildSilentSignalsPanel(context, silentSignals),
                     ],
                   ),
-                );
-              },
-            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildKpiCard(BuildContext context, String title, String value, IconData icon, Color color) {
+  Widget _buildStatCard(BuildContext context, String title, String value, IconData icon, Color color) {
     return Card(
-      elevation: 2,
+      elevation: 1,
       child: Container(
         width: 220,
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(title, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.grey[700])),
-                Icon(icon, color: color),
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.grey, fontSize: 14),
+                ),
+                Icon(icon, color: color, size: 24),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              value,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildComplianceProgressBar(BuildContext context, double spentCr, double compliancePct) {
+    // 15% SC + 7.5% ST = 22.5% combined quota mandate
+    const targetPct = 22.5;
+    final relativeProgress = Math.min(compliancePct / targetPct, 1.0);
+
+    return Card(
+      elevation: 1,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'SC/ST Quota Compliance Mandate',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Statutory statutory requirement: 15% SC & 7.5% ST target allocation',
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ],
+                ),
+                Text(
+                  '${compliancePct.toStringAsFixed(2)}% achieved',
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.indigo),
+                ),
               ],
             ),
             const SizedBox(height: 16),
-            Text(value, style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold)),
+            LinearProgressIndicator(
+              value: relativeProgress,
+              minHeight: 14,
+              backgroundColor: Colors.grey[200],
+              color: compliancePct >= targetPct ? Colors.green : Colors.indigo,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Current Tagged Works: ₹${(spentCr * 100).toStringAsFixed(0)} Lakhs',
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+                Text(
+                  'Statutory Mandate: ₹${(19.6 * 0.225).toStringAsFixed(2)} CR',
+                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.indigo),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildYearlyTrendsSection(BuildContext context, List<dynamic>? trends) {
+    if (trends == null || trends.isEmpty) {
+      return const SizedBox(
+        height: 250,
+        child: Center(child: Text('Yearly trends not available.')),
+      );
+    }
+
+    final barGroups = List.generate(trends.length, (index) {
+      final t = trends[index];
+      final double works = (t['works'] as num).toDouble();
+      final double amount = (t['amount_cr'] as num).toDouble();
+      return BarChartGroupData(
+        x: t['year'] as int,
+        barRods: [
+          BarChartRodData(toY: works, color: Colors.blue, width: 16, borderRadius: BorderRadius.circular(2)),
+          BarChartRodData(toY: amount * 10.0, color: Colors.green, width: 16, borderRadius: BorderRadius.circular(2)), // Scale amount for visual balance
+        ],
+      );
+    });
+
+    return Card(
+      elevation: 1,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Yearly Performance & Spending Trends',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            const Text(
+              'Comparing completed works count (Blue) vs Amount spent in CR x10 (Green)',
+              style: TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+            const SizedBox(height: 24),
+            SizedBox(
+              height: 250,
+              child: BarChart(
+                BarChartData(
+                  barGroups: barGroups,
+                  borderData: FlBorderData(show: false),
+                  gridData: const FlGridData(show: true, drawVerticalLine: false),
+                  alignment: BarChartAlignment.spaceEvenly,
+                  titlesData: FlTitlesData(
+                    show: true,
+                    rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        getTitlesWidget: (double value, TitleMeta meta) {
+                          return SideTitleWidget(
+                            axisSide: meta.axisSide,
+                            child: Text(value.toInt().toString(), style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSilentSignalsPanel(BuildContext context, List<Map<String, dynamic>> signals) {
+    // Filter down to the real "Silent Signals" — high need, zero complaints
+    final filteredSignals = signals.where((s) => s['reports'] == 0).toList();
+
+    return Card(
+      elevation: 2,
+      color: Colors.red[50]?.withOpacity(0.2),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: Colors.red[100]!, width: 1),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.warning_amber_rounded, color: Colors.red[700], size: 24),
+                const SizedBox(width: 8),
+                Text(
+                  'Silent Signal Panel',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold, color: Colors.red[850]),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            const Text(
+              'Hyperlocal Census gaps flagging underserved, low visibility areas with zero citizen submissions:',
+              style: TextStyle(fontSize: 12, color: Colors.black54),
+            ),
+            const Divider(height: 24),
+            filteredSignals.isEmpty
+                ? const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    child: Center(child: Text('No underserved areas flagged with zero complaints.')),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: Math.min(filteredSignals.length.toDouble(), 4).toInt(),
+                    itemBuilder: (context, idx) {
+                      final s = filteredSignals[idx];
+                      
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(Icons.gpp_maybe, color: Colors.red[800], size: 20),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    s['name'],
+                                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red[950], fontSize: 14),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    'SC Population: ${s['sc']} • ST Population: ${s['st']}',
+                                    style: TextStyle(fontSize: 11, color: Colors.red[900]),
+                                  ),
+                                  Text(
+                                    'Infrastructure: Medical: ${s['medical']} | School: ${s['school']}',
+                                    style: const TextStyle(fontSize: 11, color: Colors.black87),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red[100],
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: const Text(
+                                      'Underserved — Zero Complaints Received',
+                                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.red),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
           ],
         ),
       ),

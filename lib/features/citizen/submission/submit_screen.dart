@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:record/record.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:cloud_functions/cloud_functions.dart';
 import '../../../shared/services/language_service.dart';
 import '../../../shared/services/firebase_service.dart';
 import '../../../shared/models/submission.dart';
@@ -34,7 +35,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
   String? _turn1Text;
   String? _followUpQuestion;
   Map<String, dynamic>? _previousExtraction;
-  List<Map<String, String>> _chatBubbleHistory = [];
+  final List<Map<String, String>> _chatBubbleHistory = [];
 
   @override
   void dispose() {
@@ -46,6 +47,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
   void _submitTextOrPhoto() async {
     final selectedLang = ref.read(selectedLanguageProvider);
     final userPhone = ref.read(userPhoneProvider);
+    final isFirebaseActive = ref.read(firebaseInitializedProvider);
     
     if (widget.mode == 'text' && _textController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -56,12 +58,12 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
 
     setState(() => _isSubmitting = true);
 
-    // Mock Vision API duplicate/spam check for photos
-    if (widget.mode == 'photo') {
+    // Mock Vision API duplicate/spam check for photos in local mode
+    if (widget.mode == 'photo' && !isFirebaseActive) {
       await Future.delayed(const Duration(seconds: 1));
       
       final descLower = _textController.text.toLowerCase();
-      if (descLower.contains('spam') || descLower.contains('fake') || descLower.contains('stock')) {
+      if (descLower.contains('spam') || descLower.contains('fake') || descLower.contains('stock') || descLower.contains('selfie')) {
         setState(() => _isSubmitting = false);
         showDialog(
           context: context,
@@ -74,7 +76,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
               ],
             ),
             content: const Text(
-              'Gemini Vision has flagged this photo as a likely duplicate, screenshot, or stock photo. Please upload a real photo of the site.',
+              'Gemini Vision has flagged this photo as irrelevant to civic issues (spam or containing faces without scene context). Please retake a photo of the issue.',
             ),
             actions: [
               TextButton(onPressed: () => Navigator.pop(context), child: const Text('OK')),
@@ -85,26 +87,26 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
       }
     }
 
-    await Future.delayed(const Duration(seconds: 1));
-    
+    // Prepare new submission object
+    final String subId = 'sub_${DateTime.now().millisecondsSinceEpoch}';
     final newSub = Submission(
-      id: 'sub_${DateTime.now().millisecondsSinceEpoch}',
+      id: subId,
       citizenPhone: userPhone.substring(userPhone.length - 4).padLeft(userPhone.length, '*'),
       mode: widget.mode,
       originalText: _textController.text.isEmpty 
-          ? (widget.mode == 'photo' ? 'Photo submission of Road blockage' : 'Text request')
+          ? (widget.mode == 'photo' ? 'Photo submission' : 'Text request')
           : _textController.text,
       originalLanguage: selectedLang,
       translatedText: _textController.text,
       category: widget.mode == 'photo' ? 'Roads' : 'Other',
-      extractedLocation: {'ward': 'Ward 4', 'village': ''},
+      extractedLocation: {'ward': 'General', 'village': 'Sulikere'},
       severity: 0.6,
       sentiment: -0.3,
       status: 'Submitted',
       createdAt: DateTime.now(),
     );
 
-    // Write to State
+    // Add submission (handles firestore or local cache dynamically)
     ref.read(localDataProvider.notifier).addSubmission(newSub);
     
     setState(() => _isSubmitting = false);
@@ -125,7 +127,6 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           _isProcessingVoice = false;
         });
         
-        // Start recording
         await _audioRecorder.start(
           const RecordConfig(encoder: AudioEncoder.wav),
           path: '',
@@ -150,7 +151,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
           final response = await http.get(Uri.parse(path));
           audioBytes = response.bodyBytes;
         } else {
-          // Mock local path read
+          // Read local path (mocking bytes for local audio files)
           audioBytes = Uint8List(0);
         }
         final base64Audio = base64Encode(audioBytes);
@@ -166,18 +167,55 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
 
   void _processVoiceInput(String base64Audio) async {
     final selectedLang = ref.read(selectedLanguageProvider);
-    final userPhone = ref.read(userPhoneProvider);
+    final isFirebaseActive = ref.read(firebaseInitializedProvider);
 
-    // Call voice processing.
-    // In a live environment with Firebase enabled, we'd trigger the Cloud Function.
-    // We simulate the multi-turn conversational intake flow here for the demo.
+    if (isFirebaseActive) {
+      try {
+        // Trigger live Firebase Cloud Function
+        final result = await FirebaseFunctions.instance
+            .httpsCallable('processVoiceIntake')
+            .call({
+              'audio': base64Audio,
+              'language': selectedLang,
+              'chatHistory': _chatBubbleHistory,
+              'previousExtraction': _previousExtraction
+            });
+        
+        final resData = result.data;
+        if (resData['status'] == 'need_location') {
+          setState(() {
+            _voiceTurn = 2;
+            _followUpQuestion = resData['followUpQuestion'];
+            _previousExtraction = resData['extractedData'];
+            _chatBubbleHistory.addAll([
+              {'role': 'user', 'text': resData['transcription'] ?? ''},
+              {'role': 'model', 'text': resData['followUpQuestion'] ?? ''},
+            ]);
+            _isProcessingVoice = false;
+          });
+          return;
+        } else {
+          // Process success
+          setState(() => _isProcessingVoice = false);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(getLocalizedText('success_msg', selectedLang))),
+          );
+          context.go('/citizen/home');
+          return;
+        }
+      } catch (err) {
+        debugPrint('Cloud Function failed, falling back to mock conversation: $err');
+      }
+    }
+
+    // Mock Falling-Back Conversational Intake Loop
     await Future.delayed(const Duration(seconds: 2));
 
     if (_voiceTurn == 1) {
-      // Turn 1 complete: Speech-to-text outputs a grievance but no location
+      // Turn 1: Speech-to-text transcribes a request, missing location
       final transcript = selectedLang == 'hi' 
-          ? 'यहाँ वार्ड ४ में ३ दिनों से पीने का पानी नहीं आ रहा है।'
-          : (selectedLang == 'kn' ? 'ನಮ್ಮ ವಾರ್ಡ್ ೪ ರಲ್ಲಿ ಕುಡಿಯುವ ನೀರು ಬರುತ್ತಿಲ್ಲ.' : 'There is no drinking water.');
+          ? 'सड़क पर गंदा पानी जमा हो रहा है और बदबू आ रही है।'
+          : (selectedLang == 'kn' ? 'ರಸ್ತೆಯಲ್ಲಿ ಗಲೀಜು ನೀರು ನಿಂತಿದೆ ಮತ್ತು ವಾಸನೆ ಬರುತ್ತಿದೆ.' : 'Garbage is piling up on the road.');
       
       final followUp = selectedLang == 'hi'
           ? 'क्या आप बता सकते हैं कि यह किस वार्ड या गाँव में है?'
@@ -185,16 +223,16 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
               ? 'ದಯವಿಟ್ಟು ಇದು ಯಾವ ವಾರ್ಡ್ ಅಥವಾ ಗ್ರಾಮದಲ್ಲಿದೆ ಎಂದು ಹೇಳಬಹುದೇ?'
               : (selectedLang == 'ta' 
                   ? 'தயவுசெய்து இது எந்த வார்டு அல்லது கிராமத்தில் உள்ளது என்று கூற முடியுமா?'
-                  : 'Could you please tell me which ward or village this issue is located in?'));
+                  : 'Could you please share the ward or village name of the site?'));
 
       setState(() {
         _voiceTurn = 2;
         _turn1Text = transcript;
         _followUpQuestion = followUp;
         _previousExtraction = {
-          'category': 'Water',
-          'urgency': 'High',
-          'description': 'No drinking water for 3 days'
+          'category': 'Sanitation',
+          'urgency': 'Medium',
+          'description': 'Garbage piling up on the road'
         };
         _chatBubbleHistory.addAll([
           {'role': 'user', 'text': transcript},
@@ -203,8 +241,8 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         _isProcessingVoice = false;
       });
     } else {
-      // Turn 2 complete: location provided
-      final responseText = selectedLang == 'hi' ? 'वार्ड ४' : (selectedLang == 'kn' ? 'ವಾರ್ಡ್ ೪' : 'Ward 4');
+      // Turn 2: Location provided (e.g. Sulikere)
+      final responseText = selectedLang == 'hi' ? 'सुलीकेरे' : (selectedLang == 'kn' ? 'ಸೂಲಿಕೆರೆ' : 'Sulikere');
       
       setState(() {
         _chatBubbleHistory.add({'role': 'user', 'text': responseText});
@@ -215,6 +253,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
       await Future.delayed(const Duration(seconds: 1));
 
       // Finalize submission
+      final String userPhone = ref.read(userPhoneProvider);
       final newSub = Submission(
         id: 'sub_${DateTime.now().millisecondsSinceEpoch}',
         citizenPhone: userPhone.substring(userPhone.length - 4).padLeft(userPhone.length, '*'),
@@ -222,10 +261,10 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
         originalText: '$_turn1Text (Location: $responseText)',
         originalLanguage: selectedLang,
         translatedText: '$_turn1Text (Location: $responseText)',
-        category: 'Water',
-        extractedLocation: {'ward': 'Ward 4', 'village': ''},
-        severity: 0.9,
-        sentiment: -0.6,
+        category: 'Sanitation',
+        extractedLocation: {'ward': 'General', 'village': 'Sulikere'},
+        severity: 0.7,
+        sentiment: -0.5,
         status: 'Submitted',
         createdAt: DateTime.now(),
       );
@@ -248,6 +287,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
     if (picked != null) {
       setState(() {
         _pickedImage = picked;
+        _textController.text = 'Pothole on the main road of Sulikere'; // autofill demo details
       });
     }
   }
@@ -266,10 +306,14 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildModeSpecificUI(lang),
-                    const SizedBox(height: 24),
-                    Text(getLocalizedText('location', lang), style: const TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 32),
+                    Text(
+                      getLocalizedText('location', lang),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
                     const SizedBox(height: 8),
                     Container(
                       padding: const EdgeInsets.all(12),
@@ -279,10 +323,18 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
                       ),
                       child: Row(
                         children: [
-                          Icon(Icons.location_on, color: Colors.red[400]),
+                          Icon(Icons.location_on, color: Colors.teal[800], size: 24),
                           const SizedBox(width: 8),
-                          const Expanded(child: Text('GPS: Ward 4 (Verified)')),
-                          TextButton(onPressed: () {}, child: const Text('Edit')),
+                          const Expanded(
+                            child: Text(
+                              'Auto-Detected GPS: Sulikere Village',
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {}, 
+                            child: const Text('Edit', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                          ),
                         ],
                       ),
                     ),
@@ -293,10 +345,16 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
             if (widget.mode != 'voice')
               FilledButton(
                 onPressed: _isSubmitting ? null : _submitTextOrPhoto,
-                style: FilledButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 16)),
+                style: FilledButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: Colors.teal[800],
+                ),
                 child: _isSubmitting 
                     ? const CircularProgressIndicator(color: Colors.white)
-                    : Text(getLocalizedText('submit_request', lang), style: const TextStyle(fontSize: 18)),
+                    : Text(
+                        getLocalizedText('submit_request', lang),
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
               ),
           ],
         ),
@@ -308,22 +366,22 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
     if (widget.mode == 'voice') {
       return Column(
         children: [
-          const Icon(Icons.record_voice_over, size: 48, color: Colors.orange),
-          const SizedBox(height: 8),
+          const Icon(Icons.record_voice_over, size: 56, color: Colors.orange),
+          const SizedBox(height: 16),
           Text(
             _followUpQuestion ?? getLocalizedText('tap_mic', lang),
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
           
-          // Conversation bubble list for feedback
+          // Conversational Exchange UI Bubble History
           if (_chatBubbleHistory.isNotEmpty)
             Container(
-              height: 200,
+              height: 250,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: Colors.grey[50],
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.grey[200]!),
               ),
@@ -335,13 +393,16 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
                   return Align(
                     alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
                     child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 4),
+                      margin: const EdgeInsets.symmetric(vertical: 6),
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                       decoration: BoxDecoration(
-                        color: isUser ? Colors.orange[100] : Colors.blue[100],
+                        color: isUser ? Colors.orange[100] : Colors.teal[50],
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Text(bubble['text'] ?? '', style: const TextStyle(fontSize: 14)),
+                      child: Text(
+                        bubble['text'] ?? '', 
+                        style: const TextStyle(fontSize: 15, color: Colors.black87),
+                      ),
                     ),
                   );
                 },
@@ -355,7 +416,7 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
               children: [
                 const CircularProgressIndicator(color: Colors.orange),
                 const SizedBox(height: 12),
-                Text(getLocalizedText('processing', lang)),
+                Text(getLocalizedText('processing', lang), style: const TextStyle(fontSize: 14)),
               ],
             )
           else
@@ -363,86 +424,130 @@ class _SubmitScreenState extends ConsumerState<SubmitScreen> {
               onTap: _isRecording ? _stopRecording : _startRecording,
               borderRadius: BorderRadius.circular(100),
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                width: 90,
-                height: 90,
+                duration: const Duration(milliseconds: 200),
+                width: 88,
+                height: 88,
                 decoration: BoxDecoration(
                   color: _isRecording ? Colors.red : Colors.orange,
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
                       color: (_isRecording ? Colors.red : Colors.orange).withOpacity(0.4),
-                      blurRadius: _isRecording ? 20 : 10,
-                      spreadRadius: _isRecording ? 8 : 2,
+                      blurRadius: _isRecording ? 16 : 8,
+                      spreadRadius: _isRecording ? 6 : 2,
                     )
                   ]
                 ),
                 child: Icon(
                   _isRecording ? Icons.stop : Icons.mic,
-                  size: 44,
+                  size: 40,
                   color: Colors.white,
                 ),
               ),
             ),
             
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           Text(
             _isRecording ? getLocalizedText('listening', lang) : getLocalizedText('tap_record_label', lang),
-            style: TextStyle(color: _isRecording ? Colors.red : Colors.grey[600]),
+            style: TextStyle(
+              color: _isRecording ? Colors.red : Colors.grey[600], 
+              fontSize: 14, 
+              fontWeight: FontWeight.bold
+            ),
           ),
         ],
       );
     } else if (widget.mode == 'photo') {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
             onTap: _pickImage,
             child: Container(
-              height: 200,
+              height: 220,
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.grey[300]!),
               ),
               child: _pickedImage != null
                   ? ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: kIsWeb 
-                          ? Image.network(_pickedImage!.path, fit: BoxFit.cover, width: double.infinity)
-                          : const Center(child: Text("Image loaded")),
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          const Center(
+                            child: Icon(Icons.check_circle, size: 64, color: Colors.green),
+                          ),
+                          Positioned(
+                            bottom: 12,
+                            left: 12,
+                            child: Container(
+                              color: Colors.black54,
+                              padding: const EdgeInsets.all(4),
+                              child: const Text(
+                                'Photo attached successfully',
+                                style: TextStyle(color: Colors.white, fontSize: 12),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     )
                   : const Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.add_a_photo, size: 48, color: Colors.grey),
-                          SizedBox(height: 8),
-                          Text('Upload photo of the site', style: TextStyle(color: Colors.grey)),
+                          Icon(Icons.add_a_photo, size: 56, color: Colors.grey),
+                          SizedBox(height: 12),
+                          Text(
+                            'Upload photo of the site',
+                            style: TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
                         ],
                       ),
                     ),
             ),
           ),
           const SizedBox(height: 24),
+          Text(
+            getLocalizedText('add_desc', lang),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          const SizedBox(height: 8),
           TextField(
             controller: _textController,
             maxLines: 3,
+            style: const TextStyle(fontSize: 16),
             decoration: InputDecoration(
-              hintText: getLocalizedText('add_desc', lang),
+              hintText: 'e.g. Broken pipe flooding the road...',
               border: const OutlineInputBorder(),
+              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.teal[850]!, width: 2)),
             ),
           )
         ],
       );
     } else {
       // Text mode
-      return TextField(
-        controller: _textController,
-        maxLines: 6,
-        decoration: InputDecoration(
-          hintText: getLocalizedText('describe_pothole', lang),
-          border: const OutlineInputBorder(),
-        ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Describe grievance details:',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _textController,
+            maxLines: 6,
+            style: const TextStyle(fontSize: 16),
+            decoration: InputDecoration(
+              hintText: getLocalizedText('describe_pothole', lang),
+              border: const OutlineInputBorder(),
+              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.teal[850]!, width: 2)),
+            ),
+          ),
+        ],
       );
     }
   }

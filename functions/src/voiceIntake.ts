@@ -3,8 +3,57 @@ import * as admin from 'firebase-admin';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { SpeechClient } from '@google-cloud/speech';
 import { Translate } from '@google-cloud/translate/build/src/v2';
+import * as https from 'https';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'MOCK_KEY');
+
+const VILLAGE_COORDINATES: Record<string, { lat: number; lng: number }> = {
+  'seshagiripura': { lat: 12.9080, lng: 77.4720 },
+  'chikkellur': { lat: 12.9220, lng: 77.4350 },
+  'chikkellur venkatapura': { lat: 12.9230, lng: 77.4370 },
+  'chikkellur ramapura': { lat: 12.9210, lng: 77.4390 },
+  'm.krishnasagara': { lat: 12.8856, lng: 77.4423 },
+  'kenchanapura': { lat: 12.9192, lng: 77.4589 },
+  'kommaghatta': { lat: 12.9145, lng: 77.4789 },
+  'sulikere': { lat: 12.9126, lng: 77.4628 },
+  'maragondanahalli': { lat: 12.8640, lng: 77.4680 },
+  'maligondanahalli': { lat: 12.8710, lng: 77.4750 },
+  'ramohalli': { lat: 12.8988, lng: 77.4520 },
+  'bheemanakuppe': { lat: 12.9056, lng: 77.4423 },
+  'galihalli': { lat: 12.7234, lng: 77.2912 },
+  'sulikere dananayakanahalli': { lat: 12.9126, lng: 77.4628 }
+};
+
+async function geocode(address: string): Promise<{ lat: number; lng: number } | null> {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey || apiKey === 'MOCK_KEY') {
+    return null;
+  }
+
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+  
+  return new Promise((resolve) => {
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', (chunk) => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          if (parsed.status === 'OK' && parsed.results && parsed.results.length > 0) {
+            const loc = parsed.results[0].geometry.location;
+            resolve({ lat: loc.lat, lng: loc.lng });
+          } else {
+            resolve(null);
+          }
+        } catch {
+          resolve(null);
+        }
+      });
+    }).on('error', () => {
+      resolve(null);
+    });
+  });
+}
 
 export const processVoiceIntake = functions.https.onCall(async (data, context) => {
   const { audio, language, chatHistory, previousExtraction } = data;
@@ -44,10 +93,10 @@ export const processVoiceIntake = functions.https.onCall(async (data, context) =
       speechToTextSuccess = true;
     }
   } catch (error) {
-    console.warn('Google Cloud Speech-to-Text failed or not configured, falling back to Gemini audio input:', error);
+    console.warn('Google Cloud Speech-to-Text failed, falling back to Gemini audio input:', error);
   }
 
-  // 2. Fallback: Use Gemini direct audio processing/transcription
+  // 2. Fallback: Use Gemini direct audio processing
   if (!speechToTextSuccess) {
     try {
       const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
@@ -69,12 +118,11 @@ export const processVoiceIntake = functions.https.onCall(async (data, context) =
       }
     } catch (geminiAudioError) {
       console.error('Gemini audio processing fallback failed:', geminiAudioError);
-      // Hard fallback for testing/demo if no keys or audio is mock
-      transcription = "There is no drinking water in Ward 4 for the last 3 days.";
+      transcription = "There is no drinking water in Sulikere for the last 3 days.";
     }
   }
 
-  // 3. Translation to English for canonical analysis (if original is not English)
+  // 3. Translation to English
   let translatedText = transcription;
   if (language !== 'en' && transcription) {
     try {
@@ -82,7 +130,7 @@ export const processVoiceIntake = functions.https.onCall(async (data, context) =
       const [translation] = await translate.translate(transcription, 'en');
       translatedText = translation;
     } catch (transError) {
-      console.warn('Cloud Translation API failed or not configured, falling back to Gemini translation:', transError);
+      console.warn('Cloud Translation API failed, falling back to Gemini translation:', transError);
       try {
         const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
         const result = await model.generateContent(`Translate the following text to English:\n"${transcription}"\nReturn only the translation.`);
@@ -93,7 +141,7 @@ export const processVoiceIntake = functions.https.onCall(async (data, context) =
     }
   }
 
-  // 4. Gemini Extraction with Function Calling schema or Structured JSON
+  // 4. Gemini Extraction
   const model = genAI.getGenerativeModel({ 
     model: 'gemini-1.5-pro',
     generationConfig: { responseMimeType: "application/json" } as any
@@ -114,7 +162,7 @@ export const processVoiceIntake = functions.https.onCall(async (data, context) =
       "description": string (free-text description),
       "location": {
         "ward": string (e.g. "Ward 4", "Ward 1", etc. or null if not mentioned),
-        "village": string (e.g. "Village East", etc. or null if not mentioned)
+        "village": string (e.g. "Sulikere", "Kommaghatta", etc. or null if not mentioned)
       },
       "aiConfidence": number (0.0 to 1.0)
     }
@@ -143,7 +191,6 @@ export const processVoiceIntake = functions.https.onCall(async (data, context) =
   const isSecondTurn = (chatHistory && chatHistory.length >= 2);
 
   if (locationMissing && !isSecondTurn) {
-    // Generate a single follow-up question in the user's selected language
     let followUpQuestion = "Could you please tell me which ward or village this issue is located in?";
     try {
       const qModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
@@ -171,33 +218,35 @@ export const processVoiceIntake = functions.https.onCall(async (data, context) =
     };
   }
 
-  // If we have the location OR it's already the second turn, write to Firestore
+  // If location is provided OR it is already the second turn, write to Firestore
   const db = admin.firestore();
   const userId = context.auth?.uid || 'anonymous_user';
   const phone = context.auth?.token.phone_number || 'anonymous_phone';
 
-  // Normalize location ward/village
   const ward = extraction.location?.ward || 'General';
   const village = extraction.location?.village || '';
 
-  // Approximate lat/lng based on ward/village for demo
-  let lat = 20.5937;
-  let lng = 78.9629;
-  if (ward === 'Ward 4') {
-    lat = 20.5937;
-    lng = 78.9629;
-  } else if (village === 'Village East') {
-    lat = 20.6937;
-    lng = 78.8629;
-  } else if (ward === 'Ward 1') {
-    lat = 20.5837;
-    lng = 78.9529;
-  } else if (ward === 'Ward 2') {
-    lat = 20.6037;
-    lng = 78.9729;
-  } else if (ward === 'Ward 3') {
-    lat = 20.6137;
-    lng = 78.9429;
+  // Calculate geocoding or fallback coords
+  let lat = 12.9126; // default Sulikere
+  let lng = 77.4628;
+  const searchKey = (village || ward).toLowerCase();
+  
+  let matchFound = false;
+  for (const k of Object.keys(VILLAGE_COORDINATES)) {
+    if (searchKey.includes(k)) {
+      lat = VILLAGE_COORDINATES[k].lat;
+      lng = VILLAGE_COORDINATES[k].lng;
+      matchFound = true;
+      break;
+    }
+  }
+
+  if (!matchFound && searchKey) {
+    const geoResult = await geocode(`${village || ward}, Karnataka, India`);
+    if (geoResult) {
+      lat = geoResult.lat;
+      lng = geoResult.lng;
+    }
   }
 
   const confidenceThreshold = 0.7;
@@ -214,7 +263,7 @@ export const processVoiceIntake = functions.https.onCall(async (data, context) =
     extractedLocation: { ward, village },
     location: new admin.firestore.GeoPoint(lat, lng),
     severity: extraction.urgency === 'High' ? 0.9 : (extraction.urgency === 'Medium' ? 0.6 : 0.3),
-    sentiment: -0.5, // Negative for grievances
+    sentiment: -0.5,
     status: status,
     aiConfidence: extraction.aiConfidence || 1.0,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),

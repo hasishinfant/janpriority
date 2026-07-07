@@ -51,15 +51,14 @@ export const deduplicateAndCluster = functions.firestore
         return;
       }
 
-      // 1. Generate Embedding
+      // 1. Generate Embedding via Gemini
       let embedding: number[] = [];
       try {
         const model = genAI.getGenerativeModel({ model: 'text-embedding-004' });
         const result = await model.embedContent(subText);
         embedding = result.embedding.values;
       } catch (embErr) {
-        console.error('Failed to generate embedding with Gemini:', embErr);
-        // Fallback random embedding mock for local test/demo if no API key
+        console.error('Failed to generate embedding with Gemini, using mock vector:', embErr);
         embedding = Array.from({ length: 768 }, () => Math.random() - 0.5);
       }
 
@@ -92,7 +91,50 @@ export const deduplicateAndCluster = functions.firestore
         }
       }
 
+      // 3. Scan nearby pending/in-progress MPLADS works to link
+      let linkedWorkId: string | null = null;
+      let linkedWorkDesc: string | null = null;
+      let linkedWorkDistance: number | null = null;
+      let linkedWorkDate: string | null = null;
+
+      try {
+        const worksSnapshot = await db.collection('mplads_works')
+          .where('status', 'in', ['recommended', 'in_progress'])
+          .get();
+
+        let closestWorkDistance = 1.0; // 1km radius limit
+
+        for (const workDoc of worksSnapshot.docs) {
+          const workData = workDoc.data();
+          const workLoc = workData.location as admin.firestore.GeoPoint;
+          if (!workLoc) continue;
+
+          // Optional: only match same category if categorizable, otherwise match any nearby pending project
+          const dist = getDistanceKm(subLoc.latitude, subLoc.longitude, workLoc.latitude, workLoc.longitude);
+          if (dist < closestWorkDistance) {
+            closestWorkDistance = dist;
+            linkedWorkId = workDoc.id;
+            linkedWorkDesc = workData.work_description;
+            linkedWorkDistance = dist;
+            linkedWorkDate = workData.date;
+          }
+        }
+      } catch (err) {
+        console.error('Error scanning nearby MPLADS works:', err);
+      }
+
       const similarityThreshold = 0.82;
+      const submissionUpdate: any = {
+        status: 'Processed',
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      };
+
+      if (linkedWorkId) {
+        submissionUpdate.linkedMpladsWorkId = linkedWorkId;
+        submissionUpdate.linkedMpladsWorkDesc = linkedWorkDesc;
+        submissionUpdate.linkedMpladsWorkDistance = linkedWorkDistance;
+        submissionUpdate.linkedMpladsWorkDate = linkedWorkDate;
+      }
 
       if (matchedClusterId && highestSimilarity >= similarityThreshold) {
         // Merge into existing cluster
@@ -106,26 +148,33 @@ export const deduplicateAndCluster = functions.firestore
           const newCount = (currentData.submissionCount || 0) + 1;
           const currentCentroid = currentData.centroid as admin.firestore.GeoPoint;
 
-          // Compute new running average centroid
+          // Compute running average centroid
           const newLat = (currentCentroid.latitude * (newCount - 1) + subLoc.latitude) / newCount;
           const newLng = (currentCentroid.longitude * (newCount - 1) + subLoc.longitude) / newCount;
 
-          transaction.update(clusterDocRef, {
+          const clusterUpdate: any = {
             submissionCount: newCount,
             representativeSubmissionIds: admin.firestore.FieldValue.arrayUnion(submissionId),
             centroid: new admin.firestore.GeoPoint(newLat, newLng),
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-          });
+          };
+
+          // Update link if new submission is closer or if cluster didn't have one
+          if (linkedWorkId && (!currentData.linkedMpladsWorkId || (linkedWorkDistance || 1.0) < (currentData.linkedMpladsWorkDistance || 1.0))) {
+            clusterUpdate.linkedMpladsWorkId = linkedWorkId;
+            clusterUpdate.linkedMpladsWorkDesc = linkedWorkDesc;
+            clusterUpdate.linkedMpladsWorkDistance = linkedWorkDistance;
+            clusterUpdate.linkedMpladsWorkDate = linkedWorkDate;
+          }
+
+          transaction.update(clusterDocRef, clusterUpdate);
         });
 
-        await change.after.ref.update({
-          clusterId: matchedClusterId,
-          status: 'Processed'
-        });
+        submissionUpdate.clusterId = matchedClusterId;
+        await change.after.ref.update(submissionUpdate);
         console.log(`Merged submission ${submissionId} into cluster ${matchedClusterId} (similarity: ${highestSimilarity.toFixed(3)})`);
       } else {
         // Create a new cluster
-        // Shorten description for title using Gemini or substring
         let clusterTitle = `Issue in ${ward}`;
         if (subText) {
           try {
@@ -139,7 +188,7 @@ export const deduplicateAndCluster = functions.firestore
           }
         }
 
-        const newCluster = {
+        const newCluster: any = {
           title: clusterTitle,
           category: category,
           ward: ward,
@@ -152,11 +201,17 @@ export const deduplicateAndCluster = functions.firestore
           updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         };
 
+        if (linkedWorkId) {
+          newCluster.linkedMpladsWorkId = linkedWorkId;
+          newCluster.linkedMpladsWorkDesc = linkedWorkDesc;
+          newCluster.linkedMpladsWorkDistance = linkedWorkDistance;
+          newCluster.linkedMpladsWorkDate = linkedWorkDate;
+        }
+
         const newClusterRef = await clustersRef.add(newCluster);
-        await change.after.ref.update({
-          clusterId: newClusterRef.id,
-          status: 'Processed'
-        });
+        submissionUpdate.clusterId = newClusterRef.id;
+        
+        await change.after.ref.update(submissionUpdate);
         console.log(`Created new cluster ${newClusterRef.id} for submission ${submissionId}`);
       }
     }

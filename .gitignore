@@ -47,3 +47,8 @@ node_modules/
 functions/lib/
 functions/node_modules/
 
+# Local build environment and credentials
+build_env/
+serviceAccountKey.json
+
+

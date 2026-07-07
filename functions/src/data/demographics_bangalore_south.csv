@@ -1,0 +1,13 @@
+village_name,location_code,area_ha,population_2011,households,sc_population_pct_range,st_population_pct_range,schools_in_village_pp_p_m_s,higher_ed_available_in_village,medical_facility_in_village,drinking_water_available,electricity_domestic,nearest_town,nearest_town_distance_km_range
+Seshagiripura,613005,40.6,246,62,not_found_in_extracted_range,not_found_in_extracted_range,partial (a/a/a/a - all 5-10km away),No,No,No,Yes,BBMP,10+
+Chikkellur,613006,243.1,1120,252,not_found_in_extracted_range,not_found_in_extracted_range,yes (2 schools in-village),No,Yes,Yes,Yes,BBMP,10+
+Chikkellur Venkatapura,613007,51.8,15,5,not_found_in_extracted_range,not_found_in_extracted_range,partial,No,No,No,Yes,BBMP,10+
+Chikkellur Ramapura,613008,65.8,63,14,not_found_in_extracted_range,not_found_in_extracted_range,partial,No,No,No,Yes,BBMP,10+
+M.Krishnasagara,613009,89.9,403,98,21-30,not_found_in_extracted_range,partial (all 5-10km),No,No,Yes,Yes,BBMP,10+
+Kenchanapura,613010,283.1,769,178,21-30,not_found_in_extracted_range,yes (2 schools in-village),No,No,Yes,Yes,BBMP,5-10
+Kommaghatta,613011,649.0,2950,749,11-20,not_found_in_extracted_range,yes (4 schools in-village),No,Yes (2 facilities),Yes,Yes,BBMP,<5
+Sulikere,613012,392.0,1070,265,21-30,Less than 5,yes (PP/P/M/S/SS all in-village),No (5-10km away),No,Yes,Yes,BBMP,5-10
+Maragondanahalli,613013,392.7,1133,260,21-30,Less than 5,yes (3 schools in-village),No,Yes,Yes,Yes,BBMP,10+
+Maligondanahalli,613015,278.0,928,216,not_found_in_extracted_range,Less than 5,partial,No,No,Yes,Yes,BBMP,10+
+Ramohalli,613016,422.9,3975,982,11-20,Less than 5,yes (6 schools in-village),No,No,Yes,Yes,BBMP,10+
+Bheemanakuppe,613017,520.7,3321,830,5-10,Less than 5,yes (5 schools in-village),No,Yes,Yes,Yes,BBMP,10+

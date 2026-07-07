@@ -7,4 +7,5 @@ export * from './onSubmissionCreated';
 export * from './deduplicateAndCluster';
 export * from './scoreAndRank';
 export * from './voiceIntake';
+export * from './seedDatabase';
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/services/firebase_service.dart';
+import '../../../shared/models/cluster.dart';
+import '../../../shared/models/ranking.dart';
+
 
 class RankingsScreen extends ConsumerStatefulWidget {
   const RankingsScreen({super.key});
@@ -49,7 +52,10 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
         if (isDesktop)
           Expanded(
             flex: 1,
-            child: _buildWeightsPanel(),
+            child: Card(
+              margin: const EdgeInsets.only(top: 16, right: 16, bottom: 16),
+              child: SingleChildScrollView(child: _buildWeightsPanel()),
+            ),
           ),
       ],
     );
@@ -102,9 +108,23 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
         final rankItem = sortedRankings[index];
         final cluster = clusters.firstWhere(
           (c) => c.id == rankItem.clusterId,
-          orElse: () => null,
+          orElse: () => Cluster(
+            id: rankItem.clusterId,
+            title: 'Grievance Cluster',
+            category: 'Other',
+            ward: 'General',
+            submissionCount: 0,
+            representativeSubmissionIds: [],
+            status: 'Under Review',
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now(),
+          ),
         );
-        final title = cluster?.title ?? 'Grievance Cluster';
+        
+        final title = cluster.title;
+        final hasMpladsLink = cluster.linkedMpladsWorkId != null;
+        final String enrichmentType = cluster.enrichment?['benchmarkLabel'] ?? 'state/district benchmark';
+        final isHyperlocal = enrichmentType.contains('hyperlocal');
 
         return Card(
           margin: const EdgeInsets.only(bottom: 16),
@@ -114,6 +134,7 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Top row with Rank and Score
                 Row(
                   children: [
                     CircleAvatar(
@@ -125,12 +146,25 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(title, style: Theme.of(context).textTheme.titleLarge),
-                          if (cluster != null)
-                            Text(
-                              '${cluster.category} • ${cluster.ward} • ${cluster.submissionCount} mentions',
-                              style: TextStyle(color: Colors.grey[600], fontSize: 13),
-                            ),
+                          Text(title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 18, fontWeight: FontWeight.bold)),
+                          const SizedBox(height: 4),
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[200],
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text(cluster.category, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                '${cluster.ward} • ${cluster.submissionCount} reports',
+                                style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -144,7 +178,28 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
                     )
                   ],
                 ),
+                const SizedBox(height: 12),
+                
+                // Data Source Badge
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: isHyperlocal ? Colors.green[50] : Colors.orange[50],
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(color: isHyperlocal ? Colors.green[100]! : Colors.orange[100]!),
+                  ),
+                  child: Text(
+                    enrichmentType,
+                    style: TextStyle(
+                      fontSize: 11, 
+                      fontWeight: FontWeight.bold, 
+                      color: isHyperlocal ? Colors.green[800] : Colors.orange[850]
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 16),
+
+                // AI Explanation Block
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -153,11 +208,44 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
                     Expanded(
                       child: Text(
                         rankItem.explanation,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
                       ),
                     ),
                   ],
                 ),
+
+                // Pending MPLADS Project Link Alert (Warning block if near pending work)
+                if (hasMpladsLink) ...[
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.amber[50],
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.amber[200]!),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.report_problem, color: Colors.amber[800], size: 18),
+                            const SizedBox(width: 6),
+                            const Text(
+                              'Nearby Pending MPLADS Work Detected',
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.amber),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'Complaint is located ${(cluster.linkedMpladsWorkDistance! * 1000).toStringAsFixed(0)}m from a pending project: "${cluster.linkedMpladsWorkDesc}" (MPLADS ID: ${cluster.linkedMpladsWorkId}, pending since ${cluster.linkedMpladsWorkDate}).',
+                          style: TextStyle(fontSize: 12, color: Colors.amber[900]),
+                        ),
+                      ],
+                    ),
+                  )
+                ]
               ],
             ),
           ),
@@ -175,7 +263,7 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
         children: [
           const Text('Ranking Weights', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
-          const Text('Adjust to live-recalculate priority scores.', style: TextStyle(color: Colors.grey)),
+          const Text('Adjust to live-recalculate priority scores.', style: TextStyle(color: Colors.grey, fontSize: 13)),
           const SizedBox(height: 24),
           _buildSlider('Citizen Demand', wCitizenDemand, (val) {
             setState(() => wCitizenDemand = val);
@@ -209,8 +297,8 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
-            Text('${(value * 100).toInt()}%'),
+            Text(label, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14)),
+            Text('${(value * 100).toInt()}%', style: const TextStyle(fontSize: 14)),
           ],
         ),
         Slider(
