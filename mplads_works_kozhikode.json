@@ -1,0 +1,139 @@
+{
+  "source": "empoweredindian.in - MP Performance Report (page render, not raw table export)",
+  "generated_at": "2026-07-07T14:49:49",
+  "extraction_note": "This PDF page only surfaces the top 4 'Recent Completed' and top 5 'Recommended/In-Progress' works, not the MP's full 271-work list, same limitation as the Bangalore/Sulikere MP report. Do not treat this as the complete works dataset.",
+  "mp_info": {
+    "name": "Shri M K Raghavan",
+    "constituency": "Kozhikode",
+    "state": "Kerala",
+    "house": "Lok Sabha"
+  },
+  "fund_summary": {
+    "allocated_amount_cr": 14.7,
+    "total_expenditure_l": 39.9,
+    "fund_utilization_pct": 2.7,
+    "unspent_amount_cr": 14.3,
+    "in_progress_payments_l": 25.6,
+    "payment_gap_pct": 64.2,
+    "total_works": 271,
+    "completion_rate_pct": 1.5,
+    "works_completed": 4,
+    "pending_works": 267
+  },
+  "yearly_trends": [
+    { "year": 2025, "works": 69, "amount_cr": 2.5 },
+    { "year": 2026, "works": 35, "amount_cr": 1.8 }
+  ],
+  "works": [
+    {
+      "id": "KZ-C01",
+      "category": "Normal/Others",
+      "description": "Construction of Kuruvachal Thanikuzhi Road",
+      "area_name": "Kuruvachal Thanikuzhi",
+      "matched_census_village": null,
+      "matched_census_location_code": null,
+      "match_confidence": "no match found in extracted Vadakara/Quilandy/Kozhikode taluk village list (51 villages) - locality is likely within Kozhikode Municipal Corporation limits (urban/town area), which is covered by Town Directory, not Village Directory, in this DCHB - do not fabricate a match",
+      "amount_lakh": 3.2,
+      "status": "completed",
+      "date": "2026-03-07"
+    },
+    {
+      "id": "KZ-C02",
+      "category": "Normal/Others",
+      "description": "Construction of Kunnath Anganwadi Road",
+      "area_name": "Kunnath",
+      "matched_census_village": null,
+      "matched_census_location_code": null,
+      "match_confidence": "no match found in extracted village list - likely urban/town area, not covered by rural Village Directory data extracted",
+      "amount_lakh": 3.3,
+      "status": "completed",
+      "date": "2026-03-07"
+    },
+    {
+      "id": "KZ-C03",
+      "category": "Normal/Others",
+      "description": "Construction of Santhinagar Road",
+      "area_name": "Santhinagar",
+      "matched_census_village": null,
+      "matched_census_location_code": null,
+      "match_confidence": "no match found - likely urban/town area",
+      "amount_lakh": 3.8,
+      "status": "completed",
+      "date": "2026-03-07"
+    },
+    {
+      "id": "KZ-C04",
+      "category": "Normal/Others",
+      "description": "Construction of Theruvath Kadavu Muthileri Road",
+      "area_name": "Theruvath Kadavu Muthileri",
+      "matched_census_village": null,
+      "matched_census_location_code": null,
+      "match_confidence": "no match found - likely urban/town area",
+      "amount_lakh": 4,
+      "status": "completed",
+      "date": "2026-03-07"
+    },
+    {
+      "id": "KZ-R01",
+      "category": "Normal/Others",
+      "description": "Electrification work of Kalangali Nalucent Nagar Drinking Water Project",
+      "area_name": "Kalangali Nalucent Nagar",
+      "matched_census_village": null,
+      "matched_census_location_code": null,
+      "match_confidence": "no match found in extracted village list - do not fabricate",
+      "amount_lakh": 5,
+      "status": "recommended",
+      "date": "2026-03-06"
+    },
+    {
+      "id": "KZ-R02",
+      "category": "Normal/Others",
+      "description": "Construction of Poolakkottuthazham Poolakkottumeethal SC Nagar Road",
+      "area_name": "Poolakkottuthazham / Poolakkottumeethal SC Nagar",
+      "matched_census_village": null,
+      "matched_census_location_code": null,
+      "match_confidence": "no match found in extracted village list - name explicitly references an 'SC Nagar' (a Scheduled Caste colony), a strong signal this work is SC-quota relevant even without a confirmed village boundary match",
+      "amount_lakh": 10,
+      "status": "recommended",
+      "date": "2026-02-27",
+      "sc_st_tagged": true
+    },
+    {
+      "id": "KZ-R03",
+      "category": "Normal/Others",
+      "description": "Construction of Naduvallur Vettuvott Maruthukandi Road",
+      "area_name": "Naduvallur Vettuvott Maruthukandi",
+      "matched_census_village": null,
+      "matched_census_location_code": null,
+      "match_confidence": "no match found in extracted village list",
+      "amount_lakh": 10,
+      "status": "recommended",
+      "date": "2026-02-27"
+    },
+    {
+      "id": "KZ-R04",
+      "category": "Normal/Others",
+      "description": "Construction of Nanmanda Higher Secondary School Puttaramkodumala SC Unnathi Road",
+      "area_name": "Nanmanda / Puttaramkodumala",
+      "matched_census_village": null,
+      "matched_census_location_code": null,
+      "match_confidence": "no match found in extracted village list - name references 'SC Unnathi', another explicit SC-quota signal",
+      "amount_lakh": 10,
+      "status": "recommended",
+      "date": "2026-02-27",
+      "sc_st_tagged": true
+    },
+    {
+      "id": "KZ-R05",
+      "category": "Normal/Others",
+      "description": "Construction of Nayaruveed Nagar Road",
+      "area_name": "Nayaruveed Nagar",
+      "matched_census_village": null,
+      "matched_census_location_code": null,
+      "match_confidence": "no match found in extracted village list",
+      "amount_lakh": 8,
+      "status": "recommended",
+      "date": "2026-02-27"
+    }
+  ]
+}

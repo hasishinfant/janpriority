@@ -1,0 +1,590 @@
+district,sub_district,town_name,town_total_population,slum_name,is_notified,households_approx,slum_population_approx,paved_roads_km,drainage_system_code,private_latrines_pit,private_latrines_flush,private_latrines_service,private_latrines_others,private_latrines_community,public_water_tap_points,electricity_domestic_conn,electricity_road_lighting_conn,electricity_others_conn,households_without_private_latrine_access_est,sanitation_gap_ratio
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,RAMABAI NAGAR,1,1182,5188,1,1,55,169,0,2,3,355,1051,95,0,955.0,0.808
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,JAI MALHAR SEVANAGAR GHATKOPAR,1,207,940,0.5,1,10,31,0,1,1,63,184,45,0,165.0,0.797
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,panchashil nagar bhatwadi,1,415,2100,1,1,23,69,0,2,2,125,369,95,0,321.0,0.773
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shiv sandesh chawl,2,47,210,0.02,2,3,6,0,0,1,15,42,0,0,37.0,0.787
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,yeshvant nagar vikroli,1,199,944,0.5,3,10,31,0,0,1,60,177,45,0,157.0,0.789
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"pawarwadi ambedkar nagar,bhat wadi",1,575,2520,1,3,27,82,0,0,1,173,512,95,0,465.0,0.809
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sidharth nagar bhatwadi,1,808,3544,1,3,38,116,0,0,2,243,719,95,0,652.0,0.807
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,saibaba nagar,1,119,540,0.5,3,6,15,0,0,1,36,106,45,0,97.0,0.815
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,amrut nagar tambenagar ghatkopar,1,235,1228,0.5,3,13,32,0,0,2,71,209,30,0,188.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"lower depo pada,vokroli",1,1067,5056,1,3,54,165,0,0,1,320,949,95,0,847.0,0.794
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"ramaji nagar,hanuman nagar  bhatwadi",1,1524,6688,1,2,71,218,0,0,0,458,1355,95,0,1235.0,0.81
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,L ward slum area,2,127348,584523,165,3,167,1086,0,1227,1182,104172,118842,16500,167,124913.0,0.981
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,F/S mahashvari mandir,1,25,110,0.02,3,2,3,0,0,0,8,23,0,0,20.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,maheshvari mandir,1,25,110,0.02,3,2,3,0,0,0,8,23,0,0,20.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivneri tekadi,1,75,356,0.02,3,4,12,0,0,0,23,67,0,0,59.0,0.787
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mu.kamgar zopadi  two,1,20,88,0.03,3,1,3,0,0,0,6,18,2,0,16.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ramdut patra shed,1,19,84,0.03,3,1,3,0,0,0,6,17,2,0,15.0,0.789
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shahyadri coloney,1,83,376,0.02,3,4,13,0,0,0,25,74,0,0,66.0,0.795
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,dhabholkar addada,1,506,2300,1,3,25,2,0,0,0,152,450,95,0,479.0,0.947
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hanuman nagar,1,67,292,0.02,3,4,1,0,0,0,21,60,0,0,62.0,0.925
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhau shinde patra chawl,1,65,284,0.02,3,3,8,0,0,0,20,58,0,0,54.0,0.831
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mahatma gandhi vistar,1,821,3600,0.7,3,38,1,0,0,0,247,730,60,0,782.0,0.952
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mahatma gandhi vasahat,1,456,2000,1,3,22,1,0,0,0,137,406,95,0,433.0,0.95
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,chandika sansthan,1,102,444,0.5,3,5,2,0,0,0,31,91,30,0,95.0,0.931
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ramlaxman tekadi,1,179,844,0.5,3,9,3,0,0,0,54,160,45,0,167.0,0.933
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,new shivaji nagar,1,84,380,0.02,3,4,1,0,0,0,26,75,0,0,79.0,0.94
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,new shivaji nagar,1,83,380,0.02,3,4,1,0,0,0,25,74,0,0,78.0,0.94
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hanuman tekadi,1,54,220,0.02,3,3,1,0,0,0,17,48,0,0,50.0,0.926
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,katra devi,1,123,556,0.5,3,6,7,0,0,0,37,110,45,0,110.0,0.894
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tejukatha tekadi,1,92,437,0.5,3,5,1,0,0,0,28,82,30,0,86.0,0.935
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,saisadan and maheshvari vasahat saibaba path,1,118,518,0.5,3,6,1,0,0,0,36,105,45,0,111.0,0.941
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tavaripada,1,403,2060,0.5,3,22,1,0,0,0,121,359,30,0,380.0,0.943
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,meghwadi,1,19,86,0.03,3,1,1,0,0,0,6,17,2,0,17.0,0.895
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,punam park,2,17,81,0.03,3,1,1,0,0,0,6,16,2,0,15.0,0.882
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,g.d.ambekar,2,23,108,0.02,3,2,2,0,0,0,7,21,0,0,19.0,0.826
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jijamata zopadpatrti,2,3802,16690,2,3,176,1,0,0,0,1141,3380,175,0,3625.0,0.953
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,parshuram nagar kalachauki,2,965,4233,1,3,45,1,0,0,0,290,858,95,0,919.0,0.952
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kamgar chawl,2,126,567,0.5,3,6,1,0,0,0,38,112,45,0,119.0,0.944
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,raigad nagar kalachauki,2,77,347,0.02,3,4,1,0,0,0,24,69,0,0,72.0,0.935
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"lalitkala zopadpatti, kalachauki",2,16,75,0.03,3,1,1,0,0,0,5,15,2,0,14.0,0.875
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,wesatern india zopadpatti kala chauki,2,210,921,0.5,3,10,1,0,0,0,63,187,45,0,199.0,0.948
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,chatai chawl  kalachauki,2,618,2711,0.7,3,29,1,0,0,0,186,550,60,0,588.0,0.951
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,wadiya godown,2,131,594,0.5,3,7,1,0,0,0,40,117,45,0,123.0,0.939
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,zakeriya bander  T.J. Rd.,2,1043,5637,1,3,60,1,0,0,0,313,928,95,0,982.0,0.942
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,indira nagar kolsa bander shivadi E,2,1311,5751,1,3,61,185,0,0,0,394,1166,95,0,1065.0,0.812
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,foxberi cross Rd. shivadi e,2,278,1220,0.5,3,13,40,0,0,0,84,248,30,0,225.0,0.809
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,amanshanti nagar,2,86,374,0.02,3,4,12,0,0,0,26,77,0,0,70.0,0.814
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,fosberi rd. cottongreen e.,2,665,2917,0.7,3,31,93,0,0,0,200,592,60,0,541.0,0.814
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jai shriram nagar  ray road,2,436,2074,0.7,3,22,67,0,0,2,131,388,60,0,345.0,0.791
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hatmat coloney,1,132,543,0.5,3,6,21,0,0,0,40,118,45,0,105.0,0.795
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivsena nagari shakha,1,548,2608,0.7,3,28,69,0,0,4,165,488,60,0,447.0,0.816
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,T.B. hopital samor footpath,2,420,2000,0.7,3,22,65,0,0,1,126,374,60,0,332.0,0.79
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hitvardhak nagar g ward,1,536,2539,0.7,3,27,67,0,0,0,161,477,60,0,442.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,amba chawl  king compound,1,92,532,0.5,3,6,16,0,0,2,28,82,45,0,68.0,0.739
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,Maharashtra zopadi  paramanand wadi,1,77,350,0.5,3,4,17,0,0,1,24,69,30,0,55.0,0.714
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"marwadi wadi three  ,four",1,408,2040,0.7,3,22,89,0,0,1,123,363,60,0,296.0,0.725
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ganesh nagar s.lanjekar Rd.,1,899,3945,0.7,3,42,109,0,0,2,270,800,60,0,746.0,0.83
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vageshvari nagar  lanjekar marg,1,1010,4783,0.7,3,51,127,0,0,1,303,898,60,0,831.0,0.823
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"baiganwadi mankhurd, Deonar, Cheetah Camp Etc",1,118600,580000,12,3,1086,30449,0,22,240,17591,107926,480,0,86825.0,0.732
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,chembur,1,116,550,0.5,1,6,16,0,36,0,35,104,45,0,94.0,0.81
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gavanpada,2,916,4020,0.7,3,43,105,0,0,5,91,815,60,0,763.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ambedkarnagar,2,1611,7068,1,3,75,156,0,1,2,160,1432,95,0,1378.0,0.855
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,navgharpada,2,987,4550,1,3,48,94,0,0,3,98,878,95,0,842.0,0.853
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,avachit wadi  roshanlal chawl,2,254,1210,1,3,13,49,0,0,4,26,226,95,0,188.0,0.74
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,patilwadi,2,206,980,0.5,3,11,24,0,0,4,21,184,45,0,167.0,0.811
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gavade vikas,2,132,600,0.5,3,7,19,0,0,4,14,118,45,0,102.0,0.773
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,patra chawl,2,433,1900,1,3,20,50,0,0,3,43,385,95,0,360.0,0.831
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,nanepada gaon,2,1379,6380,1,3,68,175,0,1,4,137,1226,95,0,1132.0,0.821
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,navghar tata coloney,2,955,4550,1,3,48,94,0,1,4,95,849,95,0,809.0,0.847
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sajjan wadi,2,164,780,0.5,3,9,20,0,0,2,17,146,45,0,133.0,0.811
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,railwayline subway R.P.F.,2,302,1439,1,3,16,47,0,0,2,30,269,95,0,237.0,0.785
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,indiranagar one,2,744,3265,1,3,35,170,0,1,4,74,662,95,0,535.0,0.719
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,naik wadi janata vikas nagar,2,486,2131,1,3,23,67,0,0,2,49,432,95,0,394.0,0.811
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"indira nagar two,three",2,3361,14750,1.5,3,156,337,0,2,10,333,2988,95,0,2858.0,0.85
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ambedkar nagar,2,1343,7068,1,3,75,156,0,1,4,133,1194,95,0,1108.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shankar bhuvan,2,99,449,1,2,5,15,0,0,1,10,88,95,0,78.0,0.788
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,babu jagjivandas ram nagar,2,1876,8232,1,3,87,218,0,1,5,186,1668,95,0,1566.0,0.835
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,azad nagar,2,945,4145,1,3,44,111,0,1,5,94,840,95,0,785.0,0.831
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"javahar tolkies,sanjay gandhi nagar",2,353,1680,1,3,18,42,0,1,4,35,314,95,0,289.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,olad eainad nagar,2,1049,4968,1,3,53,116,0,0,6,104,933,95,0,874.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ramgad,2,1259,6000,1,3,64,156,0,0,20,125,1119,95,0,1019.0,0.809
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tambe chawl,2,25,110,0.1,3,2,3,0,0,2,3,23,6,0,18.0,0.72
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shinde wadi,2,32,150,1,3,2,4,0,0,1,4,29,95,0,25.0,0.781
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhanoshi pada,2,179,812,0.5,3,9,25,0,0,3,18,160,45,0,142.0,0.793
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vishva shanti shakar nagar,2,207,986,0.5,3,11,29,0,0,4,21,184,45,0,163.0,0.787
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,harijan coloney,2,320,1310,1,3,14,35,0,0,3,32,285,95,0,268.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jummataili chawl,2,187,850,0.5,3,9,23,0,0,4,19,167,45,0,151.0,0.807
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,nilkant nagar,2,299,1425,1,3,15,38,0,0,3,30,266,95,0,243.0,0.813
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shrikrushna nagar,2,75,325,1,3,4,9,0,0,2,8,67,95,0,60.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tegappa proparty,2,17,80,0.03,3,1,2,0,0,2,2,16,2,0,12.0,0.706
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,amarnagar,2,1711,7509,1,3,80,307,0,3,6,170,1521,95,0,1318.0,0.77
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,khindipada,2,681,2987,1,3,32,95,0,0,5,68,606,95,0,549.0,0.806
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shambhaji nagar,2,991,4346,1,3,46,108,0,1,4,99,881,95,0,833.0,0.841
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hanumanpada,2,1731,7595,1,3,80,195,0,1,6,172,1539,95,0,1450.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mulund coloney,2,843,3700,1,3,39,112,0,1,6,84,750,95,0,686.0,0.814
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,panshil nagar,2,531,2328,1,3,25,29,0,0,4,53,472,95,0,473.0,0.891
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ganeshpada,2,608,2667,1,3,29,31,0,0,0,61,541,95,0,548.0,0.901
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ramabai pada,2,285,1295,1,3,14,28,0,0,4,29,254,95,0,239.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sainath wadi,2,158,750,0.5,3,8,20,0,0,3,16,141,45,0,127.0,0.804
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,malbarhill,2,315,1500,1,3,16,65,0,0,8,32,280,95,0,226.0,0.717
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,moti nagar,2,117,530,0.5,3,6,14,0,0,2,12,104,45,0,95.0,0.812
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shankar tekadi,2,858,4159,1,3,44,103,0,0,8,85,763,95,0,703.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jagruti society,1,1026,4500,1,2,48,85,0,3,0,600,912,95,0,893.0,0.87
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mogarapada  mase wadi,1,697,3300,1,3,35,78,0,0,0,600,620,95,0,584.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sahargaon/marol pipe line,1,13183,57869,5,2,610,916,0,0,75,1306,11718,95,0,11582.0,0.879
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,arekhar mandir mage,2,38,177,1,2,2,5,0,0,1,12,34,95,0,30.0,0.789
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"gogi nagar,indiranagar",2,4273,18755,1.5,2,198,488,0,0,1,1282,3798,95,0,3586.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sunder nagar,1,1532,6725,1,2,71,750,0,0,1,460,1362,95,0,710.0,0.463
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,balgovind nagar,1,263,1250,1,2,14,33,0,0,1,79,234,95,0,215.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shubhash nagar (I),1,650,3740,1,2,40,98,0,0,1,195,578,95,0,511.0,0.786
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tripathi nagar ramnath yadav chawl,1,2066,9065,1,2,96,236,0,0,1,620,1837,95,0,1733.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,durga nagar,1,1367,6210,1,2,66,162,0,0,1,410,1215,95,0,1138.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sariput nagar prajapur pada,1,1357,5955,1,2,63,155,0,0,0,407,1207,95,0,1139.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,durga seva sangh,1,1094,5210,1,2,55,66,0,0,1,329,973,95,0,972.0,0.888
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sarvodayanagark/e,1,1370,6225,1,2,66,204,0,0,1,411,1218,95,0,1099.0,0.802
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kokan nagar,1,250,1225,1,2,13,39,0,0,1,75,223,95,0,197.0,0.788
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,MIDC HEALTH CENTER,1,21343,93688,4.5,2,987,1744,0,1,110,4009,18970,107,0,18502.0,0.867
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,marol H.P.,1,17901,78582,3.5,2,828,755,0,0,1,1773,15911,95,0,16317.0,0.912
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"baman wada,kabir kar",1,14834,65118,4,3,686,1411,0,0,95,1469,13185,80,0,12642.0,0.852
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shankar wadi,1,747,3560,1,1,38,80,0,5,0,611,664,95,0,629.0,0.842
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mogarapada,1,774,3750,1,3,40,90,0,0,16,233,688,95,0,628.0,0.811
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mogara pada k/e,1,692,3295,1,3,35,71,0,2,3,545,616,95,0,583.0,0.842
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,parasi panchayat rd.ambewadi,1,800,3509,1,3,37,91,0,0,3,700,712,95,0,669.0,0.836
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivaji nagar  pump house,1,990,4500,1,3,48,117,0,0,5,900,880,95,0,820.0,0.828
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hind nagar/ambewadi,1,835,3791,1,3,40,108,0,0,4,668,743,95,0,683.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hindu friends society,1,1039,4720,1,3,50,123,0,0,9,940,924,95,0,857.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,santosh nagar p/n,2,6846,30050,2.5,2,317,240,0,0,15,5477,6085,95,1000,6274.0,0.916
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bmc coloney,1,5135,22540,2.5,3,238,587,0,14,14,1540,4564,95,0,4296.0,0.837
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tushar hill,1,2842,12475,1.5,3,132,322,0,0,54,282,2526,95,0,2334.0,0.821
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivshai,1,4245,18634,1.5,2,197,1,0,0,0,2560,3773,95,0,4047.0,0.953
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,muttumari,2,1523,7215,1,1,76,182,0,3,0,457,1354,95,0,1265.0,0.831
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,new ratoji,1,829,3975,1,1,42,81,0,0,6,249,737,95,0,700.0,0.844
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kharodi gaon,1,525,2500,1,1,27,1,0,0,1,158,467,95,0,496.0,0.945
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,akashwani  Azaminagar,1,4092,19500,1.5,1,206,455,0,0,10,1228,3637,95,0,3421.0,0.836
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,akashwani azaminagar I,1,3630,17300,1.5,1,183,416,0,0,10,1089,3227,95,0,3021.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ali Talav hanuman zopadi,1,1783,8495,1,1,90,150,0,0,3,535,1585,95,0,1540.0,0.864
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,juleswadi,1,660,3000,2,3,32,194,0,2,5,66,587,175,0,429.0,0.65
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,buddha nagar,2,441,2100,2,1,23,156,0,2,2,44,392,175,0,260.0,0.59
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,o.c.c.,1,5191,22785,2.5,3,240,554,0,0,48,4261,4614,95,0,4349.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,new collector compound,1,14933,65553,4.5,3,691,1707,0,0,520,6500,13273,95,0,12015.0,0.805
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhim nagar,1,2353,11213,1.5,3,119,359,0,0,46,1136,2092,95,0,1829.0,0.777
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ambodawadi,2,6085,28836,2.5,1,304,756,0,8,8,1825,5409,95,0,5017.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,M.H.B.coloney,1,2889,12680,1.5,3,134,333,0,1,50,1510,2568,95,0,2372.0,0.821
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,raipada/surajbhuvan,2,714,3400,1,3,36,15,0,25,400,375,635,95,0,263.0,0.368
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,salvi chawl,1,2267,10742,4,3,114,12,0,32,575,422,2015,34,0,1566.0,0.691
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,somwar bazar,2,2203,10500,2,3,111,6,0,118,400,964,1959,175,72,1686.0,0.765
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhandarwada/kumbharwada,2,1650,7500,1,3,79,4,0,122,800,928,1467,95,74,767.0,0.465
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,s.v.road somwar bazar,2,810,3858,2,3,41,8,0,103,500,575,720,175,30,261.0,0.322
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivgami ambedkar,1,2637,12568,1.5,1,133,409,0,0,1,791,2344,95,0,2094.0,0.794
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sarasvati chauk valmiki nagar,2,381,1728,1,3,19,46,0,0,6,38,339,95,0,310.0,0.814
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"rahul nagar new,old",2,1645,7218,1,3,76,120,0,0,6,163,1463,95,0,1443.0,0.877
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jai bhavani chauk,2,254,1154,1,3,13,39,0,0,3,26,226,95,0,199.0,0.783
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gandhi nagar,2,40,180,1,3,2,5,0,0,2,4,36,95,0,31.0,0.775
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,nahur gavthan,2,66,300,1,3,4,8,0,0,2,7,59,95,0,52.0,0.788
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shanti nagar,2,150,680,0.5,3,8,18,0,0,3,15,134,45,0,121.0,0.807
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tiwari chawl,2,63,285,1,3,3,8,0,0,2,7,56,95,0,50.0,0.794
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,aziz compound,2,55,250,1,3,3,6,0,0,3,6,49,95,0,43.0,0.782
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gavani pada,2,108,490,1,3,6,14,0,0,3,11,96,95,0,85.0,0.787
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shriram nagar,2,240,1200,1,3,13,31,0,0,5,24,214,95,0,191.0,0.796
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,asha  sushila ansari chawl,2,24,110,0.1,3,2,3,0,0,2,3,22,6,0,17.0,0.708
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ghati pada,2,475,2085,1,3,22,55,0,0,4,48,423,95,0,394.0,0.829
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,panekar chawl,2,138,565,0.5,3,6,15,0,0,2,14,123,45,0,115.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,nagsen nagar,2,319,1400,1,3,15,37,0,0,3,32,284,95,0,264.0,0.828
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ganesh pada,2,116,505,0.5,3,6,14,0,0,1,12,104,45,0,95.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,nalpada,2,175,810,0.5,3,9,21,0,0,2,18,156,45,0,143.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vijay nagar,2,131,620,0.5,3,7,17,0,0,1,13,117,45,0,106.0,0.809
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shastrinagar,2,524,2300,1,3,25,62,0,0,0,52,466,95,0,437.0,0.834
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,punjabi chawl santoshi chawl,2,273,1299,1,3,14,35,0,0,2,28,243,95,0,222.0,0.813
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,nehru nagar,2,78,370,1,3,4,11,0,0,1,8,70,95,0,62.0,0.795
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,keshav pada,2,402,1850,1,3,20,59,0,0,2,40,358,95,0,321.0,0.799
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mulund coloney wagharipada,2,101,425,1,3,5,12,0,0,1,10,90,95,0,83.0,0.822
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,E.S.I.S. Dispensary,2,423,1855,1,3,20,49,0,0,2,127,376,95,0,352.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shriram nagar two,2,208,960,0.5,3,11,25,0,0,2,21,185,45,0,170.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,samisha nagar,2,168,800,0.5,3,9,21,0,0,1,17,150,45,0,137.0,0.815
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,police line T/ward,2,342,1710,1,3,18,39,0,0,2,34,304,95,0,283.0,0.827
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,udaya nagar,2,331,1450,1,3,16,38,0,0,2,33,295,95,0,275.0,0.831
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kadam pada,2,357,1700,1,3,18,39,0,0,4,36,318,95,0,296.0,0.829
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,salpadevi sadan,2,312,1369,1,3,15,36,0,0,6,31,278,95,0,255.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,salfadevi pada,2,454,2268,1,3,24,59,0,0,2,45,404,95,0,369.0,0.813
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,walika bai chawl,2,110,520,0.5,3,6,13,0,0,1,11,98,45,0,90.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,P and T coloney,2,505,2216,1,3,24,58,0,0,2,50,449,95,0,421.0,0.834
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,indira coloney,2,456,2100,1,3,23,55,0,0,3,137,406,95,0,375.0,0.822
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ashoknagar,2,668,2931,1,3,31,86,0,1,2,67,594,95,0,549.0,0.822
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gautam nagar,2,712,3125,1,3,33,82,0,0,3,214,633,95,0,594.0,0.834
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhim wadi,2,740,3248,1,3,35,87,0,0,4,74,658,95,0,614.0,0.83
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,lande wadi,2,1638,7187,1,3,76,93,0,1,4,163,1456,95,0,1465.0,0.894
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,siddharth nagar one,2,1170,5135,1,3,55,131,0,0,6,116,1040,95,0,978.0,0.836
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,panchsheel old mulund,2,1265,5550,1,3,59,66,0,0,4,126,1125,95,0,1136.0,0.898
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,Maharashtra nagar,1,677,3132,1,3,33,68,0,10,12,500,602,95,0,564.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shashtri nagar,1,655,3800,1,3,40,99,0,10,12,524,583,95,0,504.0,0.769
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,narnis nagar,1,2043,8968,3,3,95,146,0,10,12,613,1816,2,0,1790.0,0.876
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kudeshvari,1,989,4558,1,3,48,117,0,10,12,297,880,95,0,812.0,0.821
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jandarvan,1,1341,6708,1,3,71,124,0,10,0,403,1192,95,0,1146.0,0.855
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,danda loket,1,86,390,1,3,5,10,0,0,0,26,77,95,0,71.0,0.826
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sherali raman,1,52,235,1,3,3,10,0,0,0,16,47,95,0,39.0,0.75
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,payari nagar,1,180,854,0.5,3,9,10,0,0,0,18,160,45,16,161.0,0.894
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,new janata coloney ambedkar nagar,1,391,1863,1,3,20,28,0,10,12,118,348,95,0,331.0,0.847
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,danda moker,1,109,495,1,3,6,10,0,0,0,33,97,95,0,93.0,0.853
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"khot wadi,garodiya estate",1,159,720,0.5,3,8,22,0,10,12,48,142,45,0,117.0,0.736
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shastri nagar H/E,1,3133,13751,1.5,3,145,358,0,4,0,2750,2785,95,0,2630.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,priya estate,1,388,1700,3,3,18,65,0,3,20,311,345,0,0,285.0,0.735
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,azad nagar H.E.,1,456,2000,1,3,22,130,0,4,0,365,406,95,0,304.0,0.667
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,indira nagar h e,1,695,3050,1,3,33,99,0,0,2,556,618,95,0,561.0,0.807
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,maneypada,1,759,3330,1,3,36,87,0,0,30,600,675,95,0,606.0,0.798
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hasmugra rd.,1,3873,17000,1.5,3,179,650,0,0,7,3099,3443,95,0,3037.0,0.784
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,yogiraj ashram,1,411,1800,1,3,19,78,0,0,10,329,366,95,0,304.0,0.74
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kalina don ger,1,4752,22000,2.5,3,232,1560,0,0,10,1100,4224,95,0,2950.0,0.621
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,chirekhan nagar,1,357,1700,1,3,18,65,0,0,12,286,318,95,0,262.0,0.734
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kadam wadi,1,525,2500,1,3,27,115,0,0,10,420,467,95,0,373.0,0.71
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,chunnabhatti,1,760,3500,2,3,11,260,0,0,10,608,676,175,0,479.0,0.63
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shiv nagar,1,795,3975,1,3,42,104,0,0,47,636,707,95,0,602.0,0.757
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jambhalipada,1,1294,6165,2,3,65,161,0,0,40,1200,1151,175,0,1028.0,0.794
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,adarsha nagar,1,235,1120,1,3,12,39,0,0,9,188,209,95,0,175.0,0.745
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kolavari v lane,1,874,3970,1,3,42,104,0,0,45,794,777,95,0,683.0,0.781
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ram mandir,1,357,1700,1,3,18,52,0,0,9,286,318,95,0,278.0,0.779
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kalina masjit,1,264,1200,1,3,13,91,0,0,3,212,235,95,0,157.0,0.595
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,madras wadi,1,6151,27000,2.5,3,285,650,0,0,5,5000,5468,95,0,5211.0,0.847
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,indira nagar,1,283,1345,1,3,15,35,0,0,12,227,252,95,0,221.0,0.781
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,lasunwadi,1,2532,12000,1.5,3,127,390,0,0,4,2026,2251,95,0,2011.0,0.794
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kaju wadi,1,633,3000,1,3,32,163,0,0,4,507,563,95,0,434.0,0.686
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,subhash nagar,1,7120,31252,2.5,3,329,156,0,0,5,1200,6329,95,0,6630.0,0.931
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,milind nagar,1,231,1100,1,3,12,33,0,0,4,185,206,95,0,182.0,0.788
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mosambi tabela,1,231,1100,1,3,12,65,0,0,2,185,206,95,0,152.0,0.658
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,nagsdevi chawl,1,2728,13000,1.5,3,137,390,0,0,6,2500,2425,95,0,2195.0,0.805
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,wagariwada,1,3417,15000,1.5,3,158,780,0,0,8,2734,3038,95,0,2471.0,0.723
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,navjivan,1,220,1000,1,3,11,104,0,0,8,176,196,95,0,97.0,0.441
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,pragatinagar,1,630,3000,1,3,32,91,0,0,6,504,560,95,0,501.0,0.795
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,dhobi ghat,1,2518,12000,1.5,3,127,650,0,0,120,2015,2238,95,0,1621.0,0.644
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sevanagar,1,250,1200,1,3,13,26,0,0,7,200,223,95,0,204.0,0.816
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,asha nagar,1,600,3000,1,3,32,130,0,0,12,480,534,95,0,426.0,0.71
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,davri nagar,1,4752,22000,3,3,232,572,0,0,25,4000,4224,0,0,3923.0,0.826
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,agripada,1,330,1500,1,3,16,130,0,0,12,264,294,95,0,172.0,0.521
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,nalu club,1,1688,8000,1,3,85,650,0,0,20,1351,1501,95,0,933.0,0.553
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,five road,1,252,1200,1,3,13,65,0,0,2,202,224,95,0,172.0,0.683
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,haNUMAN TEKADI,2,154,700,0.5,2,8,19,0,0,0,47,137,45,0,127.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,SEVEN RASTTA,1,126,600,0.5,3,7,16,0,0,5,65,112,45,0,98.0,0.778
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,GOLIBAR NAKA,1,1556,7200,1,3,76,195,0,0,50,1400,1383,95,0,1235.0,0.794
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,MARATHA COLONEY,1,1238,5900,1,3,63,130,0,0,55,900,1101,95,0,990.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,maratha coloney,1,1000,5900,2,3,63,130,0,0,55,900,889,175,0,752.0,0.752
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,teen bangala,1,7158,33000,2.5,3,348,111,0,0,30,800,6363,95,0,6669.0,0.932
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,rajiv nagar,1,1436,6300,1,3,67,104,0,0,40,800,1277,95,0,1225.0,0.853
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,adersh nagar,2,180,900,0.5,3,10,26,0,0,10,144,160,45,0,134.0,0.744
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,deepak wadi,1,6493,28500,2.5,3,300,78,0,0,20,643,5771,95,0,6095.0,0.939
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,teen bhartiya,1,110,500,1,2,6,26,0,0,0,33,98,95,0,78.0,0.709
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ahiso nagar,1,1000,5000,1,2,53,78,0,0,2,590,889,95,0,867.0,0.867
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sanjay gandhi nagar,1,1495,6888,1,1,73,128,0,0,70,984,1329,95,0,1224.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shubhash nagar,1,1469,7000,1,3,74,130,0,0,9,950,1306,95,0,1256.0,0.855
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,saikrupa,1,3417,15000,1.5,3,158,46,0,0,9,345,3038,95,0,3204.0,0.938
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,saikrupa,1,3417,15000,1.5,3,158,46,0,0,9,345,3038,95,0,3204.0,0.938
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,indira nagar H/e,2,296,1345,1,1,15,37,0,0,50,270,264,95,0,194.0,0.655
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,reserch coloney,1,2734,12000,1.5,3,127,390,0,0,20,2187,2430,95,0,2197.0,0.804
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gautam sevasang,1,600,2500,1,1,27,20,0,0,10,140,534,95,0,543.0,0.905
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shastri nagar two,1,2278,10000,1,3,106,325,0,0,48,1823,2025,95,0,1799.0,0.79
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ambedkar nagar  two,1,2518,11053,1.5,3,117,62,0,0,12,475,2238,95,0,2327.0,0.924
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,Maharashtra nagar  two,1,3998,20000,1,3,211,650,0,0,20,3199,3554,95,0,3117.0,0.78
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gyaneshver nagar,1,6330,30000,2,3,316,923,0,0,20,5064,5627,175,0,5071.0,0.801
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,navpada,1,5695,25000,4,3,264,910,0,0,15,4556,5062,0,0,4506.0,0.791
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,beharam pada,2,7290,32000,2.5,1,337,1021,0,0,6,2187,6480,95,0,5926.0,0.813
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bharatnagar H.E.,1,2204,9675,3,3,102,143,0,0,50,900,1959,19,0,1909.0,0.866
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,walmiki nagar,1,2500,10195,1.5,2,108,169,0,0,10,1200,2222,95,0,2213.0,0.885
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,patthar nagar,1,308,1400,1,3,15,93,0,0,5,247,274,95,0,195.0,0.633
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,islampura,1,2057,9800,1,3,104,50,0,0,10,1100,1829,95,0,1893.0,0.92
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tata coloney,1,600,3000,1,2,4,400,0,0,5,450,534,95,0,191.0,0.318
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ratnabai zopadpatti,2,1151,5230,1,3,56,130,0,4,5,346,1024,95,0,960.0,0.834
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,geetai khadi zopadpatti,2,819,3722,1,3,40,91,0,0,2,246,728,95,0,686.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kajupada zopadpatti,2,1100,5968,1,3,63,156,0,15,2,330,978,95,0,879.0,0.799
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kulupwadi,2,1300,6741,1,3,71,195,0,0,3,390,1156,95,0,1031.0,0.793
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,M H B ZOPADPATTI,2,2363,10370,1.5,3,110,305,0,0,2,709,2101,95,0,1946.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,DEVIPADA ZOPADPATTI,2,5701,25023,2.5,3,264,485,0,0,3,1710,5068,95,0,4949.0,0.868
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,DEVIPADI ZOPADPATTI,1,5701,25023,2.5,3,264,485,0,0,3,1710,5068,95,0,4949.0,0.868
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"GP NAGAR, SONIYA BUDHIYA COMPOUND, Panchasheel nagar, shivaji nagar etc.",1,41800,218810,15,3,3356,8290,0,0,868,7190,39550,1500,0,29286.0,0.701
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,R/S BAN DONGARI VADVANA VILLAGE,2,2792,12256,1.5,3,130,294,0,0,6,277,2482,95,0,2362.0,0.846
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,RAMNAGAR ANNA NAGAR,2,2267,10740,1.5,3,114,294,0,0,11,230,2015,95,0,1848.0,0.815
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,APANA NAGAR DURGA NAGAR,2,2269,10458,1.5,3,111,260,0,0,4,225,2017,95,0,1894.0,0.835
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,JANUPADA TO ELO GATE,2,4845,22961,2.5,3,242,594,0,0,10,461,4307,95,0,3999.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,GANDHI NAGAR R/S,2,3728,15310,1.5,3,162,399,0,5,2,370,3314,95,0,3165.0,0.849
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,GANDHI NAGARR/S,2,3728,18126,1.5,1,191,393,0,0,8,370,3314,95,0,3136.0,0.841
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,MUTTEN GALLI,2,3479,15810,1.5,1,167,398,0,4,1,345,3093,95,0,2913.0,0.837
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,BABREKAR NAGAR,1,3471,16000,1.5,3,169,392,0,2,1,344,3086,95,0,2909.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"BABREKAR NAGAR,KANDIVALI",1,4195,19880,1.5,3,210,517,0,0,3,416,3729,95,0,3465.0,0.826
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,SANJAY NAGAR,1,3122,14450,1.5,3,153,354,0,5,3,310,2775,95,0,2612.0,0.837
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"SANJAY NAGAR,GANESH NAGAR",1,3442,16405,1.5,3,173,411,0,10,3,341,3060,95,1,2855.0,0.829
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,EAKTA NAGAR,1,3062,15870,1.5,3,168,372,0,0,14,373,2722,95,0,2508.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,BANDER PARWADI,2,3021,13768,1.5,3,145,351,0,4,4,906,2686,95,0,2521.0,0.834
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,BANDER PHAKHADI,1,1317,6275,1,3,67,985,0,25,15,395,1171,95,0,250.0,0.19
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,CHARKOP GAON,1,1789,8526,1,3,90,664,0,0,0,537,1591,95,36,1035.0,0.579
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,chandravali yadav chawl  K/E,1,1152,5490,2,3,58,127,0,4,0,900,1024,175,0,967.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,Ganesh nagar,1,1620,7720,1,3,82,201,0,4,0,1296,1440,95,0,1337.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,Mogara pada,1,884,4210,1,3,45,88,0,2,0,595,786,95,0,751.0,0.85
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shankar wadi  k/e,1,549,2491,1,3,27,73,0,3,0,440,488,95,0,449.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,subash nagar/bandekar wadi,1,347,1576,1,3,17,72,0,0,25,278,309,95,0,233.0,0.671
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vandrekar wadi/sonar chawl,1,772,3676,1,3,39,78,0,0,25,600,687,95,0,630.0,0.816
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,navalkar wadi/subash nagar,1,888,4228,1,3,45,145,0,0,38,711,790,95,0,660.0,0.743
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kantilal compound,1,675,3214,1,3,34,99,0,0,205,203,600,95,0,337.0,0.499
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,pump house/zagadapada,1,945,4500,1,3,48,117,0,0,4,284,840,95,0,776.0,0.821
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,franses wadi,1,852,4261,1,3,45,110,0,0,0,682,758,95,0,697.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,makarani pada,1,945,4375,1,3,47,110,0,0,0,840,840,95,0,788.0,0.834
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mogarapada/juna nangerdas road,1,550,3165,1,3,34,77,0,3,3,510,489,95,0,436.0,0.793
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"sambhaji nagar,koldongari",1,10176,44668,2.5,3,471,1220,0,1,170,5730,9045,95,130,8315.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"saiwadi,koldongari",1,672,3200,3,3,34,390,0,0,24,202,598,5,0,224.0,0.333
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,saiwadi koldongari,1,1253,5800,3,2,62,800,0,0,12,376,1114,15,0,379.0,0.302
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shambhai nagar,1,688,3275,1,2,35,85,0,0,4,560,612,95,0,564.0,0.82
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sambhaji nagar K/E,1,843,3778,1,2,40,86,0,0,6,650,750,95,0,711.0,0.843
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,young committee ashirwad chawl,1,682,3250,1,2,35,175,0,0,3,250,607,95,0,469.0,0.688
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gundewali gavthan,1,439,2092,1,2,35,72,0,1,55,150,391,95,80,277.0,0.631
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gundavali/gavthan,1,840,3815,1,1,41,100,0,0,20,220,747,95,50,679.0,0.808
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,babaji daruwala,1,9796,43000,3,2,353,59,0,3,2,970,8707,11,0,9382.0,0.958
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mantri chawl  wagari pada,1,1439,6660,3,2,71,215,0,5,1,1152,1279,12,0,1152.0,0.801
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,koldongari k e,1,2207,9685,1,3,102,236,0,0,60,662,1962,95,0,1809.0,0.82
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ratan pande chawl,1,658,3000,3,2,32,130,0,0,5,198,585,10,0,491.0,0.746
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,dhobighat teli gally,1,500,2269,1,2,24,59,0,0,85,435,445,95,0,332.0,0.664
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shambhajinagar S.R.A,1,821,3781,1,2,40,98,0,0,0,750,730,95,0,683.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,Squattess coloney,1,28396,124650,12,3,0,2500,0,0,45,2812,25239,1200,0,25851.0,0.91
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kanchpada  I,2,846,3844,1,1,41,151,0,0,1,254,752,95,0,653.0,0.772
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shailesh nagar,2,659,3141,1,1,34,129,0,0,1,198,586,95,0,495.0,0.751
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ratif compound,2,1310,6241,1,1,66,174,0,0,1,393,1165,95,0,1069.0,0.816
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhadan nagar,1,1000,4273,1,2,45,108,0,0,0,300,889,95,0,847.0,0.847
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gudiya wadi,1,1245,5462,1,1,58,178,0,0,1,374,1107,95,0,1008.0,0.81
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kanchpada,1,750,3251,1,1,35,124,0,0,1,225,667,95,0,590.0,0.787
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,siyon nagar,1,268,1216,1,1,13,39,0,0,1,27,239,95,1,215.0,0.802
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"valana,gward,Fward,E ward.",1,664,3161,1,1,34,99,0,0,1,66,591,95,0,530.0,0.798
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,A ward enamdar estate,1,722,3440,1,1,37,112,0,0,1,72,642,95,0,572.0,0.792
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,malrani pada /shantaram pada,1,4780,20982,2.5,3,221,108,0,1,1,474,4249,95,0,4450.0,0.931
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,khot dongari,1,2277,9994,1,3,106,130,0,1,1,226,2024,95,0,2040.0,0.896
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kasam bag gautam nagar,1,3686,16178,1.5,3,171,76,0,1,1,365,3277,95,0,3438.0,0.933
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"panch bavadi,govind nagar",1,950,4495,1,3,48,29,0,1,0,285,845,95,0,873.0,0.919
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,dhobi ghat/niletiya compound,1,2318,10175,1.5,3,108,82,0,1,0,696,2061,95,0,2128.0,0.918
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vadari pada/navjala,1,2427,10650,1.5,3,113,70,0,1,1,241,2158,95,0,2243.0,0.924
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,dhanjiwadi/patel chauk,1,2236,9815,1,3,104,79,0,1,1,222,1988,95,0,2052.0,0.918
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,savitribai phule nagar,2,1931,9200,1,1,97,260,0,0,6,580,1717,95,8,1568.0,0.812
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,prathamesh nagar,1,2213,10200,1.5,3,108,273,0,0,6,1100,1967,95,20,1826.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,maheshver nagar,1,2308,11000,1.5,1,116,338,0,0,5,1823,2052,95,22,1849.0,0.801
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"azad nagar to anand nagar,bharadkar compound",1,2347,10300,1.5,3,109,286,0,0,2,1510,2087,95,11,1950.0,0.831
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,appapada/ambedkarnagar,2,1660,8300,1,1,88,238,0,0,0,498,1476,95,8,1334.0,0.804
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gokul nagar/sanganga durga nagar,1,5263,23100,2.5,3,244,744,0,0,10,3800,4678,95,50,4265.0,0.81
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"gandhi nagar,bhimnagar,anandnagar",1,2014,10200,1.5,3,108,333,0,0,10,1815,1791,95,50,1563.0,0.776
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"Bandrekar wadi, Shivtekadi, Pratapnagar, majas wadi",1,16470,72300,2,3,762,90,0,0,94,1631,14639,95,0,15524.0,0.943
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,(ii)bharadawadi davi baju,1,627,2985,1,3,32,1,0,0,1,189,558,95,0,593.0,0.946
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,amboli mahatarpada,1,476,2160,1,3,23,1,0,1,1,143,424,95,0,451.0,0.947
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mahatar pada,1,410,1863,1,2,20,1,0,2,2,123,365,95,0,387.0,0.944
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sarota pada,1,709,3379,1,2,36,1,0,1,2,213,631,95,0,670.0,0.945
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,azad nagar (iii),1,233,1055,1,1,12,30,0,0,1,70,208,95,0,190.0,0.815
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sabera society shamnagar,1,772,3679,1,3,39,104,0,0,2,232,687,95,0,627.0,0.812
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,B.D.Kadam chawl,1,538,2445,1,3,26,1,0,0,1,162,479,95,0,510.0,0.948
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhutelo compound,1,597,2530,1,3,27,1,0,0,1,180,531,95,0,568.0,0.951
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vahatuk nagar,1,107,510,0.5,2,6,1,0,0,0,11,96,45,0,100.0,0.935
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gavthan,1,400,2234,1,3,24,1,0,0,1,120,356,95,0,374.0,0.935
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,khadan,1,750,3240,1,1,35,71,0,0,1,225,667,95,0,643.0,0.857
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gavdevi chawl,1,124,589,0.5,3,7,1,0,0,1,13,111,45,0,115.0,0.927
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kevanipada  ii,1,315,1500,1,3,16,65,0,0,1,95,280,95,0,233.0,0.74
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivajinagar,1,116,527,0.5,3,6,18,0,0,1,12,104,45,0,91.0,0.784
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivaji nagar,1,111,527,0.5,3,6,18,0,0,1,11,99,45,0,86.0,0.775
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kevani pada  i,1,267,1170,1,3,13,59,0,0,1,81,238,95,0,194.0,0.727
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ambre chawl,1,378,1800,1,3,19,98,0,0,1,114,336,95,0,260.0,0.688
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,makad pada,1,378,1800,1,3,19,59,0,0,1,114,336,95,0,299.0,0.791
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,andheri station,1,372,1632,1,2,18,49,0,0,1,112,331,95,0,304.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,dhake estate daout bag,1,83,375,1,2,4,11,0,0,1,9,74,95,0,67.0,0.807
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jogeshvari station,1,136,682,0.5,2,8,20,0,0,1,14,121,45,0,107.0,0.787
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tep village,1,439,1925,1,3,21,1,0,0,1,132,391,95,0,416.0,0.948
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,abubatvar patra chawl,1,780,3695,1,3,39,1,0,0,1,78,694,95,1,739.0,0.947
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,walmikinagar,1,449,2140,1,3,23,1,0,0,1,135,400,95,0,424.0,0.944
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kranti nagar,1,6825,29958,2.5,3,316,898,0,0,6,2030,6067,95,30,5605.0,0.821
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tanajinagar,1,3513,15421,1.5,3,163,405,0,0,21,348,3123,95,0,2924.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,islampura adersh nagar,1,2409,10571,1.5,3,112,4,0,0,35,311,2142,95,0,2258.0,0.937
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,laxman nagar dutta wadi,1,4003,17570,1.5,3,185,465,0,0,50,3470,3558,95,0,3303.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"bhim nagar,shivajinagar",1,2579,11320,1.5,3,120,272,0,0,104,817,2293,95,0,2083.0,0.808
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kan dongari phule nagar,1,10916,47918,2,3,505,1252,0,0,89,1321,9703,175,0,9070.0,0.831
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"pratap nagar,shivaji nagar",1,2465,10818,1.5,3,114,59,0,0,13,400,2191,95,0,2279.0,0.925
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,makabul compound  pathan wadi,1,1501,6820,1,3,72,178,0,1,1,451,1335,95,0,1250.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,janu compound,1,1469,7000,1,3,74,182,0,0,1,441,1306,95,0,1212.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kokani pada,1,1259,6000,1,3,64,156,0,0,1,378,1119,95,0,1038.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"indira nagar,patel nagar",1,3570,15575,1.5,2,164,405,0,0,4,1071,3174,95,0,2997.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shri ram sane ram chawl,1,971,4627,1,2,49,87,0,0,4,292,864,95,0,831.0,0.856
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,pathan wadi,1,4091,19495,1.5,3,206,363,0,7,1,1227,3637,95,0,3521.0,0.861
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"railwayline zopadpatti,manchhubhai",2,95,429,1,1,5,11,0,0,0,10,85,95,0,79.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shiv sadan chal to shetal ghar,1,56,252,1,3,3,8,0,0,1,45,50,95,0,44.0,0.786
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,rana cottage,1,128,581,0.5,2,7,40,0,0,3,90,114,45,0,78.0,0.609
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,harijan zopadpatti,1,29,129,0.1,1,2,3,0,0,3,3,26,6,0,21.0,0.724
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mangal bhuvan to shiv bhuvan,1,49,220,1,2,3,20,0,0,2,40,44,95,0,24.0,0.49
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ganesh prasad chawl,1,53,237,1,2,3,5,0,0,5,47,48,95,0,40.0,0.755
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sharma chawl,1,100,451,1,3,5,12,0,0,3,20,89,95,0,80.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,masjid compound manc hhubai rd.,1,21,98,0.03,3,2,4,0,0,3,17,19,2,0,12.0,0.571
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"rozi coloney,khandwala lane",1,793,3479,1,3,37,40,0,0,30,200,705,95,0,686.0,0.865
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhikubhai chawl/tara bhuvan,1,45,214,1,3,3,35,0,0,5,30,40,95,0,2.0,0.044
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ii bharadwadi ujavi baju,1,677,2970,1,3,32,1,0,0,0,204,602,95,0,644.0,0.951
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,anand nagar velfair society,1,2924,12835,2,3,136,335,0,0,4,290,2599,175,0,2449.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,anand nagar,1,2886,12665,2,3,134,332,0,0,0,286,2566,175,4,2420.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"kaju pada,beharam bag",1,3393,14894,1.5,3,157,388,0,0,8,336,3016,95,0,2840.0,0.837
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,nehru nagar vileparle,1,9267,40677,2.5,3,429,1054,0,0,0,2780,8237,95,0,7784.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vileparle gavthan,1,1745,7659,1,3,81,197,0,0,1,524,1551,95,0,1466.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,patra chawllohiyanagar,1,478,2097,1,3,23,52,0,0,0,144,425,95,0,403.0,0.843
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vikas nagar/gautam nagar,1,4664,20470,2.5,3,216,533,0,0,4,2018,4146,95,4,3911.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ganesh nagar,1,708,3372,1,2,36,93,0,2,2,213,630,95,0,577.0,0.815
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kapaswadi,1,619,2946,1,2,32,82,0,2,2,186,551,95,0,503.0,0.813
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,geeta nagar,1,79,357,1,1,4,11,0,1,1,24,71,95,0,63.0,0.797
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shastri nagar jhogeshvari,1,2672,12732,1.5,2,135,319,0,0,8,265,2375,95,0,2210.0,0.827
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,yadav nagar kandivali,1,6739,29582,2.5,2,312,741,0,0,15,668,5990,95,0,5671.0,0.842
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"kranti nagar,beharam bag",1,2080,9129,1,2,97,227,0,0,4,206,1849,95,0,1752.0,0.842
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gulshan nagar,1,4094,16842,2,2,178,449,0,0,6,406,3639,175,0,3461.0,0.845
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ganbdhi nagar/jogeshvari,1,1336,6330,1,2,67,163,0,8,0,133,1188,95,0,1106.0,0.828
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,rajurwadi,1,1026,4750,1,2,50,121,0,6,0,115,912,95,0,855.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kota dullat compound,1,143,675,0.5,2,8,16,0,0,4,60,128,45,0,115.0,0.804
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,gora gaon/ruia park juhu,1,777,3700,1,3,39,169,0,10,14,234,691,95,0,555.0,0.714
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,koliwada,1,1091,4958,1,2,53,162,0,10,12,328,970,95,0,864.0,0.792
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhayya wadi,2,647,3081,1,1,33,99,0,0,12,195,576,95,0,503.0,0.777
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,indira nagar  Andheri,1,1572,7490,1,2,79,197,0,2,2,472,1398,95,0,1294.0,0.823
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivaji nagar i,1,922,4390,1,2,47,117,0,1,1,277,820,95,0,757.0,0.821
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivaji nagar ii,1,788,3630,1,1,39,96,0,1,1,237,701,95,0,652.0,0.827
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,putappa hsg.society,1,86,408,1,2,5,75,0,0,0,69,77,95,0,6.0,0.07
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,devikkrupa vasahat,1,29,129,0.1,2,2,25,0,0,0,24,26,6,0,2.0,0.069
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,utkarsh school pushpa park,1,721,3436,2,3,37,88,0,10,10,72,641,175,0,586.0,0.813
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,arunachalanchawl,1,577,2750,1,3,29,69,0,6,6,58,513,95,0,473.0,0.82
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,wagheshvari/bandongari,1,1033,4921,1,3,52,128,0,18,18,103,919,95,0,835.0,0.808
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"chagan vesta chawl,bagat sheti",1,159,720,0.5,3,8,2,0,8,8,16,142,45,0,141.0,0.887
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,macchhimarket,1,154,700,0.5,3,8,21,0,0,15,80,137,45,0,110.0,0.714
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,havahira mahal,1,271,1189,1,2,1,34,0,0,10,160,241,95,0,226.0,0.834
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,pavte chawl,1,114,500,1,3,6,1,0,0,15,86,102,95,0,92.0,0.807
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,chikhal wadi pandit solisiter Rd.,1,58,260,1,1,3,4,0,5,7,6,52,95,0,44.0,0.759
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,railwayline zopadpatti malad E,2,29,130,0.1,1,2,4,0,0,0,9,26,6,0,23.0,0.793
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ambewadi Potdar Rd.,1,18,80,0.03,3,1,9,0,0,4,7,16,2,0,4.0,0.222
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,pandit soliciter compound,1,18,80,0.03,3,1,10,0,0,5,15,16,2,0,2.0,0.111
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vimala somala chawl/kedarmal Rd.,1,11,50,0.02,2,0,8,0,0,1,2,10,2,0,2.0,0.182
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sarvodaya nagar/hari nagar,1,786,3449,1,3,37,300,0,0,30,236,699,95,0,419.0,0.533
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shivaji nagar P/N,2,3402,14932,1.5,3,158,386,0,0,6,1479,3024,95,0,2852.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,chiku wadi,2,759,3329,1,3,36,87,0,0,1,419,675,95,0,635.0,0.837
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shan karwadi and manori,2,2377,10434,1.5,3,110,267,0,0,0,1530,2113,95,0,2000.0,0.841
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sainnagar P/N,2,681,2987,1,3,32,138,0,0,0,251,606,95,0,511.0,0.75
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,mangalewadi,1,1116,4897,1,1,52,130,0,1,0,335,992,95,0,934.0,0.837
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sagar kutir,1,2414,10595,1.5,1,112,276,0,0,0,724,2146,95,0,2026.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ziv gully,2,2720,11940,1.5,1,126,311,0,0,1,816,2418,95,0,2282.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,yari Rd.varsova gaon,2,2963,12690,1.5,1,134,330,0,0,1,889,2634,95,0,2498.0,0.843
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ganesh nagar/roshan nagar,1,4636,20350,4,3,215,530,0,0,6,2123,4121,13,0,3885.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shakti nagar/fakir wadi,1,4251,20145,4,3,213,524,0,0,4,2119,3779,7,0,3510.0,0.826
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,kasam nagar,2,630,3000,1,1,32,78,0,0,1,189,560,95,0,519.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shitaladevi,2,800,4000,1,3,43,104,0,0,0,240,712,95,0,653.0,0.816
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jeevan nagar,2,811,3865,1,1,41,101,0,0,0,244,721,95,0,669.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,tep darga,2,826,3935,1,1,42,103,0,0,0,248,735,95,0,681.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shitaladevi shifting/kapaswadi,2,423,1920,1,1,21,50,0,0,0,127,376,95,0,352.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sahayog nagar,2,55,250,1,3,3,7,0,0,0,17,49,95,0,45.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,indiranagar K/W,2,363,1650,1,3,18,43,0,0,0,109,323,95,0,302.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shiv nagar K/w,2,77,350,1,3,4,10,0,0,0,24,69,95,0,63.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,shakti nagar,2,121,550,0.5,3,6,15,0,0,0,37,108,45,0,100.0,0.826
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,Anna nagar  shipping,2,88,400,1,3,5,11,0,0,0,27,79,95,0,72.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ambedkar nagar/siddharth nagar,2,577,2750,1,3,29,72,0,0,0,174,513,95,0,476.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,Suresh nagar,2,252,1200,1,3,13,32,0,0,0,76,224,95,0,207.0,0.821
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hansraj,2,206,900,0.5,3,10,24,0,0,0,62,184,45,0,172.0,0.835
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,laxmi nagar ling road,1,139,660,0.5,3,7,22,0,0,0,42,124,45,0,110.0,0.791
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,yadav chawl,2,9,40,0.02,3,1,2,0,0,0,8,8,2,0,6.0,0.667
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,naharsingh compound,2,22,100,0.1,3,2,4,0,0,0,18,20,6,0,16.0,0.727
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bohari compound,2,29,136,0.1,3,2,5,0,0,0,24,26,6,0,22.0,0.759
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ganesh nager oshiwira,2,28,124,0.1,3,2,5,0,0,0,9,25,6,0,21.0,0.75
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,"tiwari estate,Goregaon",2,18,80,0.03,3,1,3,0,0,0,15,16,2,0,14.0,0.778
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhagatsingh nagar No.II,1,900,4500,1,3,11,26,0,0,0,200,800,95,0,863.0,0.959
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,bhagatsingh nagarNo I,1,165,825,1,3,6,13,0,0,0,100,147,95,0,146.0,0.885
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vishveshver nagar,2,57,250,0.1,3,2,4,0,0,0,20,51,6,0,51.0,0.895
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sahakarwadi,2,143,625,0.1,3,1,25,0,0,1,15,128,2,0,116.0,0.811
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,eahabhatti,2,194,850,1,3,3,7,0,0,0,48,173,95,0,184.0,0.948
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,rajiv nagar/bhim nagar,2,177,775,0.5,3,7,16,0,0,0,100,158,45,0,154.0,0.87
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,fly over society,2,114,500,1,3,3,7,0,0,0,48,102,95,0,104.0,0.912
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,sarvodayanagar,2,200,1000,0.1,3,2,3,0,0,0,20,178,6,0,195.0,0.975
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vijaynagar/goregaon,2,42,200,1,3,3,6,0,0,0,13,38,95,0,33.0,0.786
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hanuman tekadi goregaon,2,143,625,1,3,3,6,0,0,0,15,128,95,0,134.0,0.937
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,squarters coloney goregaon e,2,57,250,1,3,14,33,0,0,0,46,51,95,0,10.0,0.175
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,javaharnagar,1,285,1250,1,3,11,26,0,0,0,200,254,95,0,248.0,0.87
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,derukhkar wadi,2,684,3000,1,3,3,120,0,0,1,68,608,95,0,560.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,vasari hill shankar nagar,2,285,1250,1,3,3,7,0,0,0,40,254,95,0,275.0,0.965
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,javahar nagar go.w.,2,114,500,0.1,3,2,4,0,0,0,20,102,6,0,108.0,0.947
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,hanuman nagar/old hanuman nagar,2,217,950,1,3,21,52,0,0,0,174,193,95,0,144.0,0.664
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,ganesh nagar panchshil nagar,2,183,800,0.5,3,8,20,0,0,0,150,163,45,0,155.0,0.847
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jijamata nagar/adersha nagar,2,1424,6250,0.5,3,10,600,0,0,1,183,1266,45,0,813.0,0.571
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,jaihind bhim mandal,2,1026,4500,0.5,3,10,23,0,0,0,172,912,45,0,993.0,0.968
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,unnat nagar prem nagar,2,285,1250,1,3,5,13,0,0,0,93,254,95,0,267.0,0.937
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,prem nagar teen dongari,2,228,1000,1,3,18,45,0,0,0,183,203,95,0,165.0,0.724
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,dindishi ambedkar nagar,2,1401,6150,1,1,5,160,0,0,0,421,1246,95,0,1236.0,0.882
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,pimparipada,1,2477,10870,1.5,1,115,329,0,0,0,743,2202,95,0,2033.0,0.821
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),9356962,santosh nagar,1,6846,30050,2.5,2,317,240,0,0,15,5477,6085,95,1000,6274.0,0.916
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,ramkundnagar to premnager,1,1576,6918,1,2,73,180,0,0,1,473,1401,95,0,1322.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,j.p.nagar,1,643,2820,1,2,30,51,0,0,0,193,572,95,0,562.0,0.874
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,"asha nagar,simalanagar",1,1330,5835,1,2,62,152,0,0,0,399,1183,95,0,1116.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,banganga talav to kalimata nagar,1,80,380,1,2,4,10,0,0,0,24,72,95,0,66.0,0.825
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,"dasnami akhada,bramhachari akhada",1,148,669,0.5,2,8,14,0,0,0,45,132,45,0,126.0,0.851
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,d.m.u.shivramtane chawl,1,891,4246,1,2,45,99,0,0,75,761,792,95,0,672.0,0.754
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,"cement godowm,zariwala chawl",1,401,1820,2,2,20,48,0,0,90,310,357,175,0,243.0,0.606
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,d.m.a. to d.m.d.daryasagar nagar,1,1383,7560,2,2,80,202,0,0,250,415,1230,175,0,851.0,0.615
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,jaifalwadi taddev,1,311,1555,1,2,17,41,0,0,150,94,277,95,0,103.0,0.331
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,janata nagar d.m.a. donger,1,406,1935,2,2,21,51,0,0,70,250,361,175,0,264.0,0.65
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,R.t.o. to Indira nagar,1,2892,12695,1.5,2,134,331,0,0,200,1380,2571,95,0,2227.0,0.77
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sethana compound,1,255,1116,2,2,12,80,0,42,10,204,227,175,0,153.0,0.6
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,B.i.T.chawk,1,17,75,0.03,1,1,2,0,0,0,6,16,2,0,14.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,nariyal wadi,1,122,580,0.5,1,7,16,0,0,0,37,109,45,0,99.0,0.811
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,rasooljiwa compd.,1,77,350,1,1,4,10,0,0,0,24,69,95,0,63.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,dosa compd.,1,43,195,1,1,3,5,0,0,0,13,39,95,0,35.0,0.814
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,progressivchawl,1,33,150,1,1,2,4,0,0,0,10,30,95,0,27.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sanaswadi,1,8,35,0.02,1,1,1,0,0,0,3,8,2,0,6.0,0.75
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,maratha compd.,1,14,60,0.03,1,1,2,0,0,0,5,13,2,0,11.0,0.786
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,ashtavinayak chawl,1,25,115,0.1,1,2,3,0,0,0,8,23,6,0,20.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,khoja chawl,1,21,95,0.03,1,1,3,0,0,0,7,19,2,0,17.0,0.81
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,patra chawl,1,24,110,0.1,1,2,3,0,0,0,8,22,6,0,19.0,0.792
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sidhivinayak chawl,1,24,110,0.1,1,2,3,0,0,0,8,22,6,0,19.0,0.792
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,transit camp,1,89,390,1,1,5,11,0,0,0,27,80,95,0,73.0,0.82
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,M.P.Nagar,1,598,2625,1,1,28,69,0,0,0,180,532,95,0,501.0,0.838
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,anandarao vakil chawl,1,113,495,1,1,6,13,0,0,0,34,101,95,0,94.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,Jamata sevak compd.,1,147,645,0.5,1,7,17,0,0,0,45,131,45,0,123.0,0.837
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sunsder gulli lambi cement chawl,1,30,135,0.1,1,2,4,0,0,0,9,27,6,0,24.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,mominpura,1,11,50,0.02,1,1,2,0,0,0,4,10,2,0,8.0,0.727
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,transit camp tank pakhadi,1,152,665,0.5,1,7,18,0,0,0,46,136,45,0,127.0,0.836
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sankli street,1,24,110,0.1,1,2,3,0,0,0,8,22,6,0,19.0,0.792
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,pachhad gully,1,35,155,1,1,2,5,0,0,0,11,32,95,0,28.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,B.I.T. chawl agripada,1,17,75,0.03,1,1,2,0,0,0,6,16,2,0,14.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sarvodaya nagar,1,16,70,0.03,1,1,2,0,0,0,5,15,2,0,13.0,0.812
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,amar Zopadpatti,1,19,90,0.03,1,1,3,0,0,0,6,17,2,0,15.0,0.789
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,bhandar tekadi,1,113,495,1,1,6,6,0,0,0,34,101,95,0,101.0,0.894
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,nava nagar,1,82,389,1,1,5,10,0,0,0,25,73,95,0,67.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,dal mill chawl loharkatta,1,53,232,1,1,3,6,0,0,0,16,48,95,0,44.0,0.83
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sethana compd,1,31,150,1,1,2,4,0,0,0,10,28,95,0,25.0,0.806
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,b.i.t. chawl  love lane,1,15,75,0.03,1,1,2,0,0,0,5,14,2,0,12.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,veer jijamata nagar,1,3417,15000,1.5,3,158,390,0,170,0,2800,3038,95,0,2869.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,swami vivekanand nagar,1,3417,15000,1.5,1,158,390,0,0,0,1025,3038,95,0,2869.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,subhash nagar,1,3417,15000,1.5,1,158,390,0,0,0,1025,3038,95,0,2869.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,"anand nagar,mosez rd.",1,3417,15000,1.5,1,158,390,0,0,0,1025,3038,95,0,2869.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,v.p.nagar,1,3417,15000,1.5,1,158,390,0,0,0,1025,3038,95,0,2869.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,madras wadi,1,3417,15000,1.5,1,158,390,0,0,0,1025,3038,95,0,2869.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,markadeshshver nagar,1,3417,15000,1.5,1,158,390,0,0,0,1025,3038,95,0,2869.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,amandnagar thadani marg,1,3000,15000,1.5,1,158,390,0,0,0,900,2667,95,0,2452.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,gautam nagar,1,3000,15000,1.5,1,158,390,0,0,0,900,2667,95,0,2452.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,geeta nagar,1,1220,5812,1,3,62,229,0,3,0,121,1085,95,0,929.0,0.761
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,ganeshmurti nagar,1,2428,11569,2,3,122,417,0,10,0,729,2159,175,0,1889.0,0.778
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,ambedkarnagar,1,4523,20850,2,3,220,715,0,15,0,1357,4021,175,0,3588.0,0.793
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,machhimarnagar,1,2385,11366,2,3,120,512,0,5,0,716,2120,175,0,1753.0,0.735
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sudam,1,1925,9175,1,3,97,335,0,3,0,578,1711,95,0,1493.0,0.776
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,padapath zopadpatti,1,10251,45000,2.5,3,474,1170,0,10,0,3075,9112,95,0,8607.0,0.84
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,betwali chawl,1,384,1744,1,2,19,38,0,0,1,151,342,95,0,326.0,0.849
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,toranwala dhor chawl,1,1016,4840,1,2,51,112,0,0,1,634,904,95,0,852.0,0.839
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,"bachhusethwadi,chikhalpada",1,1415,6742,1,2,71,137,0,0,1,985,1258,95,0,1206.0,0.852
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,girgaon chaupati,2,79,355,1,1,4,9,0,0,1,24,71,95,0,65.0,0.823
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,loyalaka compound,1,19,85,0.03,2,1,2,0,0,1,6,17,2,1,15.0,0.789
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,babulnath zopade,2,30,135,0.1,1,2,4,0,0,0,9,27,6,0,24.0,0.8
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,kawajibhedwad chawl,1,254,1152,1,2,13,17,0,0,10,77,226,95,0,214.0,0.843
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,bharat nagar,1,807,3539,1,1,38,97,0,0,0,243,581,95,0,672.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,kamnbalenagar.,1,859,4551,1,1,48,125,0,0,0,258,747,95,0,686.0,0.799
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,udayog nagar,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,kamgar nagar,1,807,3539,1,1,38,97,0,0,0,243,581,95,0,672.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,saibaba nagar,1,576,2527,1,1,27,70,0,0,0,173,415,95,0,479.0,0.832
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,vijay nagar,1,1037,4551,1,1,48,125,0,0,0,311,747,95,0,864.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,ganesh nagar,1,807,3539,1,1,38,97,0,0,0,243,581,95,0,672.0,0.833
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,shivaji nagar,1,910,4551,1,1,48,125,0,0,0,273,747,95,0,737.0,0.81
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,shivajinagar tekadi uttar,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,belani nagar,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,achanak nagar,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,gautamimata nagar,1,961,4551,1,1,48,125,0,0,0,289,747,95,0,788.0,0.82
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,golf devi,1,743,3539,1,1,38,97,0,0,0,223,581,95,0,608.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sane guruji nagar B committee,1,910,4551,1,1,48,125,0,0,0,273,747,95,0,737.0,0.81
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,shri krushna nagar,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,kasturba gandhi,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,ramdev nagar,1,910,4551,1,1,48,125,0,0,0,273,747,95,0,737.0,0.81
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,gopal nagar,1,532,2527,1,1,27,70,0,0,0,160,415,95,0,435.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,janata coloney,1,743,3539,1,1,38,97,0,0,0,223,581,95,0,608.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,maya nagar,1,910,4551,1,1,48,125,0,0,0,273,747,95,0,737.0,0.81
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,tilak nagar,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,nehru nagar,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,prem nagar,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,arvinda nagar,1,958,4551,1,1,48,125,0,0,0,288,747,95,0,785.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,ambedkar nagar,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,gomatanagar,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sadhana mill,1,743,3539,1,1,38,97,0,0,0,223,581,95,0,608.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,motilal nehru nagar  (madras wadi),1,961,4551,1,1,48,125,0,0,0,289,747,95,0,788.0,0.82
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,mata ramabai ambedkar nagar,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,indira nagar,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,hanuman nagar,1,958,4551,1,1,48,125,0,0,0,288,747,95,0,785.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,laxmidas wadi,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,kamgar seva mandal,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,Om duttaji nagar,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,jaihind patra chawl,1,958,4551,1,1,48,125,0,0,0,288,747,95,0,785.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,kamgarnagar  two,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,suseriya mill,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,shiv shaktti nagar,1,743,3539,1,1,38,97,0,0,0,223,581,95,0,608.0,0.818
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,anna nagar,1,961,4551,1,1,48,125,0,0,0,289,747,95,0,788.0,0.82
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,adarsha nagar B committee,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,ketaki chawl,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,saidham zopad patti,1,958,4551,1,1,48,125,0,0,0,288,747,95,0,785.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,ganesh nagar C,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,mahatma phule nagar,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,navjivan society,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,nariman bhat nagar,1,958,4551,1,1,48,125,0,0,0,288,747,95,0,785.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,markadeshver nagar,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,p.w.d. patra chawl,1,531,2527,1,1,27,70,0,0,0,160,415,95,0,434.0,0.817
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,subhedar ramaji ambedkar nagar,1,958,4551,1,1,48,125,0,0,0,288,747,95,0,785.0,0.819
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,sagar vihar,1,768,3539,1,1,38,97,0,0,0,231,581,95,0,633.0,0.824
+Mumbai/Mumbai Suburban,Area not under any Sub-district,Greater Mumbai (M Corp.) (Part),3085411,kamgarnagar Chawl,1,745,4047,1,2,43,111,0,0,254,596,732,95,0,337.0,0.452

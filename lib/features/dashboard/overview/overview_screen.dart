@@ -9,10 +9,10 @@ class OverviewScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final localState = ref.watch(localDataProvider);
+    final constituency = localState.activeConstituency;
     final metadata = localState.mpMetadata;
     final demographics = localState.demographics;
     final works = localState.mpladsWorks;
-    final clusters = localState.clusters;
 
     // A. Parse MP Fund Information
     final info = metadata['mp_info'] ?? {};
@@ -26,78 +26,116 @@ class OverviewScreen extends ConsumerWidget {
     final unspent = (summary['unspent_amount_cr'] ?? 6.6).toDouble();
     final paymentGap = (summary['payment_gap_pct'] ?? 79.6).toDouble();
 
-    // B. Calculate SC/ST compliance meter
+    // B. Calculate SC/ST quota tagged works
     double scStSpentLakh = 0.0;
     for (var w in works) {
       if (w['sc_st_tagged'] == true) {
         scStSpentLakh += (w['amount'] ?? 0.0).toDouble();
       }
     }
-    final scStSpentCr = scStSpentLakh / 100.0; // 100 lakh = 1 Cr
+    final scStSpentCr = scStSpentLakh / 100.0; // 100 Lakh = 1 Cr
     final scStCompliancePct = allocated > 0 ? (scStSpentCr / allocated) * 100 : 0.0;
 
-    // C. Silent Signal calculation: Census villages with zero or low complaints
-    final silentSignals = demographics.map((village) {
-      final name = village['village_name'] as String;
-      final code = village['location_code'] as String;
-      final scRange = village['sc_population_pct_range'] as String?;
-      final stRange = village['st_population_pct_range'] as String?;
-      final school = village['schools_in_village_pp_p_m_s'] as String?;
-      final medical = village['medical_facility_in_village'] as String?;
-      
-      // Count citizen submissions matching this village ward
-      final reportCount = clusters
-          .where((c) => c.ward.toLowerCase() == name.toLowerCase() || c.ward.toLowerCase() == code.toLowerCase())
-          .fold<int>(0, (sum, c) => sum + c.submissionCount);
+    // C. Check if Urban or Rural Constituency
+    final isUrban = constituency == 'Mumbai South Central' || constituency == 'Chennai North';
 
-      // Need Indicator: composite index of SC/ST and facilities availability
-      double scWeight = 0.0;
-      if (scRange != null) {
-        if (scRange.contains('21-30')) scWeight = 0.25;
-        else if (scRange.contains('11-20')) scWeight = 0.15;
-        else if (scRange.contains('5-10')) scWeight = 0.08;
+    final List<Map<String, dynamic>> silentSignals = [];
+    if (isUrban) {
+      // Slum-level sanitation gap Silent Signal panel
+      for (var row in demographics) {
+        if (row['type'] == 'slum') {
+          silentSignals.add({
+            'name': row['slum_name'] ?? 'Unknown Slum',
+            'households': row['households_approx'] ?? 0,
+            'population': row['slum_population_approx'] ?? 0,
+            'gap_ratio': (row['sanitation_gap_ratio'] ?? 0.0).toDouble(),
+            'is_rollup': row['is_rollup'] == true,
+            'electricity': row['electricity_domestic_conn'] ?? 0,
+            'water': row['public_water_tap_points'] ?? 0,
+          });
+        }
       }
-      
-      double stWeight = 0.0;
-      if (stRange != null && stRange.toLowerCase().contains('less than 5')) {
-        stWeight = 0.03;
+      // Sort by sanitation gap ratio descending
+      silentSignals.sort((a, b) => (b['gap_ratio'] as double).compareTo(a['gap_ratio'] as double));
+    } else {
+      // Village-level demographic gaps
+      for (var row in demographics) {
+        if (row['type'] != 'slum') {
+          final name = row['village_name'] as String? ?? 'Unknown Village';
+          final code = row['location_code'] as String? ?? '';
+          final scRange = row['sc_population_pct_range'] as String?;
+          final stRange = row['st_population_pct_range'] as String?;
+          final school = row['schools_in_village_pp_p_m_s'] as String?;
+          final medical = row['medical_facility_in_village'] as String?;
+
+          double scWeight = 0.0;
+          if (scRange != null) {
+            if (scRange.contains('21-30') || scRange.contains('21_to_30')) scWeight = 0.25;
+            else if (scRange.contains('11-20')) scWeight = 0.15;
+            else if (scRange.contains('5-10') || scRange.contains('5_to_10')) scWeight = 0.08;
+          }
+          double stWeight = 0.0;
+          if (stRange != null && (stRange.toLowerCase().contains('less than 5') || stRange.contains('less_than_5'))) {
+            stWeight = 0.03;
+          } else if (stRange != null && stRange.contains('21_to_30')) {
+            stWeight = 0.25;
+          }
+
+          final hasNoMedical = medical == 'No';
+          final hasNoSchool = school == 'No' || (school != null && school.contains('all 5-10km away')) || school == 'not_found_in_extracted_range';
+
+          final needScore = (hasNoMedical ? 0.35 : 0.05) + 
+                             (hasNoSchool ? 0.25 : 0.05) + 
+                             ((scWeight + stWeight) * 1.5);
+
+          silentSignals.add({
+            'name': name,
+            'code': code,
+            'sc': scRange ?? '0%',
+            'st': stRange ?? '0%',
+            'medical': medical ?? 'Unknown',
+            'school': school ?? 'Unknown',
+            'score': needScore,
+          });
+        }
       }
-
-      final hasNoMedical = medical == 'No';
-      final hasNoSchool = school == 'No' || (school != null && school.contains('all 5-10km away'));
-      
-      // Gap index: no medical (+0.35), no school (+0.25), SC/ST percentage (+0.4)
-      final needScore = (hasNoMedical ? 0.35 : 0.05) + 
-                         (hasNoSchool ? 0.25 : 0.05) + 
-                         ((scWeight + stWeight) * 1.5);
-      
-      // Participation rate (normalized count, max 100 for scaling)
-      final participation = Math.min(reportCount / 100.0, 1.0);
-      
-      // Silent Signal = high need, low participation (potential digital divide)
-      final silentSignalScore = needScore * (1.0 - participation);
-
-      return {
-        'name': name,
-        'code': code,
-        'sc': scRange ?? '0%',
-        'st': stRange ?? '0%',
-        'medical': medical ?? 'Unknown',
-        'school': school ?? 'Unknown',
-        'reports': reportCount,
-        'score': silentSignalScore,
-      };
-    }).toList();
-
-    // Sort by silent signal score descending
-    silentSignals.sort((a, b) => (b['score'] as double).compareTo(a['score'] as double));
+      // Sort by need score descending
+      silentSignals.sort((a, b) => (b['score'] as double).compareTo(a['score'] as double));
+    }
 
     final isDesktop = MediaQuery.of(context).size.width >= 1000;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('$mpName ($mpHouse, $mpTerm)'),
+        title: Text('$mpName ($mpHouse)'),
         centerTitle: false,
+        actions: [
+          // Constituency Selector Dropdown
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+              color: Colors.teal[50],
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.teal[200]!),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: constituency,
+                dropdownColor: Colors.white,
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.teal[900], fontSize: 14),
+                items: ['Bangalore South', 'Kozhikode', 'Mumbai South Central', 'Chennai North']
+                    .map((c) => DropdownMenuItem(value: c, child: Text(c)))
+                    .toList(),
+                onChanged: (val) {
+                  if (val != null) {
+                    ref.read(localDataProvider.notifier).setConstituency(val);
+                  }
+                },
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
@@ -123,7 +161,7 @@ class OverviewScreen extends ConsumerWidget {
             const SizedBox(height: 32),
 
             // 2. SC/ST Mandate Quota Compliance
-            _buildComplianceProgressBar(context, scStSpentCr, scStCompliancePct),
+            _buildComplianceProgressBar(context, scStSpentCr, scStCompliancePct, allocated),
             const SizedBox(height: 32),
 
             // 3. Yearly Trends and Silent Signals Panel
@@ -138,7 +176,7 @@ class OverviewScreen extends ConsumerWidget {
                       const SizedBox(width: 24),
                       Expanded(
                         flex: 4,
-                        child: _buildSilentSignalsPanel(context, silentSignals),
+                        child: _buildSilentSignalsPanel(context, silentSignals, isUrban),
                       ),
                     ],
                   )
@@ -146,7 +184,7 @@ class OverviewScreen extends ConsumerWidget {
                     children: [
                       _buildYearlyTrendsSection(context, metadata['yearly_trends']),
                       const SizedBox(height: 32),
-                      _buildSilentSignalsPanel(context, silentSignals),
+                      _buildSilentSignalsPanel(context, silentSignals, isUrban),
                     ],
                   ),
           ],
@@ -185,7 +223,7 @@ class OverviewScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildComplianceProgressBar(BuildContext context, double spentCr, double compliancePct) {
+  Widget _buildComplianceProgressBar(BuildContext context, double spentCr, double compliancePct, double allocated) {
     // 15% SC + 7.5% ST = 22.5% combined quota mandate
     const targetPct = 22.5;
     final relativeProgress = Math.min(compliancePct / targetPct, 1.0);
@@ -237,7 +275,7 @@ class OverviewScreen extends ConsumerWidget {
                   style: const TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 Text(
-                  'Statutory Mandate: ₹${(19.6 * 0.225).toStringAsFixed(2)} CR',
+                  'Statutory Mandate: ₹${(allocated * 0.225).toStringAsFixed(2)} CR',
                   style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.indigo),
                 ),
               ],
@@ -252,7 +290,14 @@ class OverviewScreen extends ConsumerWidget {
     if (trends == null || trends.isEmpty) {
       return const SizedBox(
         height: 250,
-        child: Center(child: Text('Yearly trends not available.')),
+        child: Card(
+          child: Center(
+            child: Text(
+              'Yearly trends not available for this MP.',
+              style: TextStyle(color: Colors.grey, fontSize: 14),
+            ),
+          ),
+        ),
       );
     }
 
@@ -264,7 +309,7 @@ class OverviewScreen extends ConsumerWidget {
         x: t['year'] as int,
         barRods: [
           BarChartRodData(toY: works, color: Colors.blue, width: 16, borderRadius: BorderRadius.circular(2)),
-          BarChartRodData(toY: amount * 10.0, color: Colors.green, width: 16, borderRadius: BorderRadius.circular(2)), // Scale amount for visual balance
+          BarChartRodData(toY: amount * 10.0, color: Colors.green, width: 16, borderRadius: BorderRadius.circular(2)),
         ],
       );
     });
@@ -319,10 +364,7 @@ class OverviewScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildSilentSignalsPanel(BuildContext context, List<Map<String, dynamic>> signals) {
-    // Filter down to the real "Silent Signals" — high need, zero complaints
-    final filteredSignals = signals.where((s) => s['reports'] == 0).toList();
-
+  Widget _buildSilentSignalsPanel(BuildContext context, List<Map<String, dynamic>> signals, bool isUrban) {
     return Card(
       elevation: 2,
       color: Colors.red[50]?.withOpacity(0.2),
@@ -346,12 +388,14 @@ class OverviewScreen extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 6),
-            const Text(
-              'Hyperlocal Census gaps flagging underserved, low visibility areas with zero citizen submissions:',
-              style: TextStyle(fontSize: 12, color: Colors.black54),
+            Text(
+              isUrban
+                  ? 'Sanitation gap analysis: Slums with highest latrine deficit and zero complaints:'
+                  : 'Census infrastructure gap analysis: Wards/Villages with highest priority need scores and zero complaints:',
+              style: const TextStyle(fontSize: 12, color: Colors.black54),
             ),
             const Divider(height: 24),
-            filteredSignals.isEmpty
+            signals.isEmpty
                 ? const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.0),
                     child: Center(child: Text('No underserved areas flagged with zero complaints.')),
@@ -359,52 +403,104 @@ class OverviewScreen extends ConsumerWidget {
                 : ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: Math.min(filteredSignals.length.toDouble(), 4).toInt(),
+                    itemCount: Math.min(signals.length.toDouble(), 5).toInt(),
                     itemBuilder: (context, idx) {
-                      final s = filteredSignals[idx];
+                      final s = signals[idx];
                       
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Icon(Icons.gpp_maybe, color: Colors.red[800], size: 20),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    s['name'],
-                                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red[950], fontSize: 14),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  Text(
-                                    'SC Population: ${s['sc']} • ST Population: ${s['st']}',
-                                    style: TextStyle(fontSize: 11, color: Colors.red[900]),
-                                  ),
-                                  Text(
-                                    'Infrastructure: Medical: ${s['medical']} | School: ${s['school']}',
-                                    style: const TextStyle(fontSize: 11, color: Colors.black87),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                    decoration: BoxDecoration(
-                                      color: Colors.red[100],
-                                      borderRadius: BorderRadius.circular(4),
+                      if (isUrban) {
+                        final isRollup = s['is_rollup'] == true;
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(isRollup ? Icons.domain : Icons.gpp_maybe, color: Colors.red[850], size: 20),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      s['name'],
+                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red[950], fontSize: 14),
                                     ),
-                                    child: const Text(
-                                      'Underserved — Zero Complaints Received',
-                                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.red),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      'Households: ${s['households']} • Population: ${s['population']}',
+                                      style: const TextStyle(fontSize: 11, color: Colors.black87),
                                     ),
-                                  )
-                                ],
+                                    Text(
+                                      'Water points: ${s['water']} | Electricity: ${s['electricity']}',
+                                      style: const TextStyle(fontSize: 11, color: Colors.grey),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        color: isRollup ? Colors.orange[100] : Colors.red[100],
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        isRollup 
+                                            ? 'Ward-Level Rollup Bucket — Sanitation Gap: ${(s['gap_ratio'] * 100).toStringAsFixed(1)}%'
+                                            : 'Sanitation Deficit: ${(s['gap_ratio'] * 100).toStringAsFixed(1)}%',
+                                        style: TextStyle(
+                                          fontSize: 10, 
+                                          fontWeight: FontWeight.bold, 
+                                          color: isRollup ? Colors.orange[850] : Colors.red
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
+                            ],
+                          ),
+                        );
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(Icons.gpp_maybe, color: Colors.red[800], size: 20),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      s['name'],
+                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red[950], fontSize: 14),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      'SC Population: ${s['sc']} • ST Population: ${s['st']}',
+                                      style: TextStyle(fontSize: 11, color: Colors.red[900]),
+                                    ),
+                                    Text(
+                                      'Infrastructure: Medical: ${s['medical']} | School: ${s['school']}',
+                                      style: const TextStyle(fontSize: 11, color: Colors.black87),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        color: Colors.red[100],
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        'Underserved Village — Gap Priority: ${(s['score'] * 10).toStringAsFixed(1)}/10',
+                                        style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.red),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
                     },
                   ),
           ],

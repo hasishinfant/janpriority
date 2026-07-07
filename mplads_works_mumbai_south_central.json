@@ -1,0 +1,84 @@
+{
+  "source": "empoweredindian.in - MP Performance Report (page render, not raw table export)",
+  "generated_at": "2026-07-07T14:51:12",
+  "extraction_note": "Report shows only the top 5 'Recommended/In-Progress' works; there is no 'Recent Completed Works' section visible because works_completed = 0. Full 34-work list not available from this render.",
+  "mp_info": {
+    "name": "Anil Yeshwant Desai",
+    "constituency": "Mumbai South Central",
+    "state": "Maharashtra",
+    "house": "Lok Sabha"
+  },
+  "fund_summary": {
+    "allocated_amount_cr": 14.7,
+    "total_expenditure_l": 59,
+    "fund_utilization_pct": 4.0,
+    "unspent_amount_cr": 14.1,
+    "in_progress_payments_l": 59,
+    "payment_gap_pct": 100.0,
+    "total_works": 34,
+    "completion_rate_pct": 0.0,
+    "works_completed": 0,
+    "pending_works": 34
+  },
+  "yearly_trends": [
+    { "year": 2025, "works": 34, "amount_cr": 8.3 }
+  ],
+  "works": [
+    {
+      "id": "MSC-R01",
+      "category": "Normal/Others",
+      "description": "Construction of drains and passage",
+      "area_name": null,
+      "matched_census_ward": null,
+      "match_confidence": "no ward/zone name given in source - do not fabricate a location",
+      "amount_lakh": 20,
+      "status": "recommended",
+      "date": "2025-09-18"
+    },
+    {
+      "id": "MSC-R02",
+      "category": "Normal/Others",
+      "description": "Providing and laying paver blocks",
+      "area_name": null,
+      "matched_census_ward": null,
+      "match_confidence": "no ward/zone name given in source",
+      "amount_lakh": 25,
+      "status": "recommended",
+      "date": "2025-09-18"
+    },
+    {
+      "id": "MSC-R03",
+      "category": "Normal/Others",
+      "description": "Providing and fixing chequered ladi",
+      "area_name": null,
+      "matched_census_ward": null,
+      "match_confidence": "no ward/zone name given in source",
+      "amount_lakh": 20,
+      "status": "recommended",
+      "date": "2025-09-18"
+    },
+    {
+      "id": "MSC-R04",
+      "category": "Normal/Others",
+      "description": "Construction of jest nagrik khatta (senior citizen facility)",
+      "area_name": null,
+      "matched_census_ward": null,
+      "match_confidence": "no ward/zone name given in source",
+      "amount_lakh": 20,
+      "status": "recommended",
+      "date": "2025-09-12"
+    },
+    {
+      "id": "MSC-R05",
+      "category": "Normal/Others",
+      "description": "Construction of jest nagrik khata (senior citizen facility, duplicate/variant spelling of R04 in source)",
+      "area_name": null,
+      "matched_census_ward": null,
+      "match_confidence": "no ward/zone name given in source - flagged as possible duplicate of MSC-R04 in the original report, not resolved by source, do not silently merge",
+      "amount_lakh": 23,
+      "status": "recommended",
+      "date": "2025-09-12"
+    }
+  ],
+  "_data_note": "Zero named locations in any of the 5 visible works — this MP's public report is far less location-specific than Kozhikode's or Chennai's. A real deployment would need to pull the underlying MPLADS/eSAKSHI work-order PDFs (which do carry ward numbers) rather than rely on this summary report alone."
+}

@@ -4,7 +4,6 @@ import '../../../shared/services/firebase_service.dart';
 import '../../../shared/models/cluster.dart';
 import '../../../shared/models/ranking.dart';
 
-
 class RankingsScreen extends ConsumerStatefulWidget {
   const RankingsScreen({super.key});
 
@@ -32,6 +31,7 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
   @override
   Widget build(BuildContext context) {
     final localState = ref.watch(localDataProvider);
+    final constituency = localState.activeConstituency;
     final rankings = localState.rankings;
     final clusters = localState.clusters;
 
@@ -64,6 +64,31 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
       appBar: AppBar(
         title: const Text('AI Ranked Priorities'),
         actions: [
+          // Constituency Selector Dropdown
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+              color: Colors.teal[50],
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.teal[200]!),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: constituency,
+                dropdownColor: Colors.white,
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.teal[900], fontSize: 14),
+                items: ['Bangalore South', 'Kozhikode', 'Mumbai South Central', 'Chennai North']
+                    .map((c) => DropdownMenuItem(value: c, child: Text(c)))
+                    .toList(),
+                onChanged: (val) {
+                  if (val != null) {
+                    ref.read(localDataProvider.notifier).setConstituency(val);
+                  }
+                },
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
           if (!isDesktop)
             IconButton(
               icon: const Icon(Icons.settings),
@@ -124,11 +149,10 @@ class _RankingsScreenState extends ConsumerState<RankingsScreen> {
         final title = cluster.title;
         final hasMpladsLink = cluster.linkedMpladsWorkId != null;
         final String enrichmentType = cluster.enrichment?['benchmarkLabel'] ?? 'state/district benchmark';
-        final isHyperlocal = enrichmentType.contains('hyperlocal');
+        final isHyperlocal = enrichmentType.contains('hyperlocal') || enrichmentType.contains('census');
 
         return Card(
           margin: const EdgeInsets.only(bottom: 16),
-          elevation: 2,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

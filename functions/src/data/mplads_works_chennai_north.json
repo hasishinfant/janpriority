@@ -1,0 +1,147 @@
+{
+  "source": "empoweredindian.in - MP Performance Report (page render, not raw table export)",
+  "generated_at": "2026-07-07T14:53:16",
+  "extraction_note": "Report shows only top 5 'Recent Completed' and top 5 'Recommended/In-Progress' works out of 74 total works. Full list not available from this render.",
+  "mp_info": {
+    "name": "Kalanidhi Veeraswamy",
+    "constituency": "Chennai North",
+    "state": "Tamil Nadu",
+    "house": "Lok Sabha"
+  },
+  "fund_summary": {
+    "allocated_amount_cr": 17.2,
+    "total_expenditure_cr": 8,
+    "fund_utilization_pct": 46.9,
+    "unspent_amount_cr": 9.1,
+    "in_progress_payments_cr": 7.4,
+    "payment_gap_pct": 91.4,
+    "total_works": 74,
+    "completion_rate_pct": 9.5,
+    "works_completed": 7,
+    "pending_works": 60
+  },
+  "yearly_trends": [
+    { "year": 2024, "works": 1, "amount_cr": 1 },
+    { "year": 2025, "works": 52, "amount_cr": 9 },
+    { "year": 2026, "works": 21, "amount_cr": 2.1 }
+  ],
+  "works": [
+    {
+      "id": "CHN-C01",
+      "category": "Normal/Others",
+      "description": "Construction of sump and water supply arrangement, providing Gym equipment for Gym building at Bharathi Nagar 4th Street",
+      "area_name": "Bharathi Nagar 4th Street",
+      "admin_reference": "Dn47, u10, z-4",
+      "matched_census_ward": null,
+      "match_confidence": "reference is a Chennai Corporation division/unit/zone code (Division 47, Unit 10, Zone 4), not a Census village - this DCHB's Part-A covers Chennai as a fully urban district and does not carry ward-level SC/ST breakdowns (that data sits in Part-B PCA, not in this document) - do not fabricate a demographic match",
+      "amount_lakh": 24.6,
+      "status": "completed",
+      "date": "2026-05-15"
+    },
+    {
+      "id": "CHN-C02",
+      "category": "Normal/Others",
+      "description": "Proposed construction of road side park at VOC Nagar South Street (Chainage 0-50)",
+      "area_name": "VOC Nagar South Street",
+      "admin_reference": "Dn40, unit-10, zone-4",
+      "matched_census_ward": null,
+      "match_confidence": "zone/division reference only, no Census-matchable village/ward name in this document",
+      "amount_lakh": 5.9,
+      "status": "completed",
+      "date": "2026-05-15"
+    },
+    {
+      "id": "CHN-C03",
+      "category": "Normal/Others",
+      "description": "Proposed construction of road side park at VOC Nagar South Street (Chainage 101-150)",
+      "area_name": "VOC Nagar South Street",
+      "admin_reference": "Dn40, unit-10, zone-4",
+      "matched_census_ward": null,
+      "match_confidence": "same location as CHN-C02, different chainage segment of the same street - not a duplicate, a distinct contiguous work",
+      "amount_lakh": 5.9,
+      "status": "completed",
+      "date": "2026-05-15"
+    },
+    {
+      "id": "CHN-C04",
+      "category": "Normal/Others",
+      "description": "Providing TNEB transformer enclosure at Seniamman Koil",
+      "area_name": "Seniamman Koil",
+      "admin_reference": "Dn40, unit-10, zone-4",
+      "matched_census_ward": null,
+      "match_confidence": "zone/division reference only",
+      "amount_lakh": 5.9,
+      "status": "completed",
+      "date": "2026-05-15"
+    },
+    {
+      "id": "CHN-C05",
+      "category": "Normal/Others",
+      "description": "Proposed construction of road side park at VOC Nagar South Street (Chainage 51-100)",
+      "area_name": "VOC Nagar South Street",
+      "admin_reference": "Dn40, unit-10, zone-4",
+      "matched_census_ward": null,
+      "match_confidence": "third segment of the same VOC Nagar South Street park project",
+      "amount_lakh": 5.9,
+      "status": "completed",
+      "date": "2026-05-15"
+    },
+    {
+      "id": "CHN-R01",
+      "category": "Normal/Others",
+      "description": "Supply of Green Board (8 units) to Government High School, Kodungaiyur",
+      "area_name": "Kodungaiyur",
+      "matched_census_ward": null,
+      "match_confidence": "Kodungaiyur is a known Chennai locality but not resolvable to a specific ward number from this document alone",
+      "amount_lakh": 2.7,
+      "status": "recommended",
+      "date": "2026-02-17"
+    },
+    {
+      "id": "CHN-R02",
+      "category": "Normal/Others",
+      "description": "Supply of Sports Equipments to Government High School, Kodungaiyur",
+      "area_name": "Kodungaiyur",
+      "matched_census_ward": null,
+      "match_confidence": "same locality as CHN-R01",
+      "amount_lakh": 9.9,
+      "status": "recommended",
+      "date": "2026-02-17"
+    },
+    {
+      "id": "CHN-R03",
+      "category": "Normal/Others",
+      "description": "Supply of Desk Bench Phase 2 (50 nos) to Govt. Hr. Sec. School, Manali",
+      "area_name": "Manali",
+      "matched_census_ward": null,
+      "match_confidence": "Manali is a known Chennai industrial-belt locality, ward not resolvable from this document",
+      "amount_lakh": 6.3,
+      "status": "recommended",
+      "date": "2026-02-17"
+    },
+    {
+      "id": "CHN-R04",
+      "category": "Normal/Others",
+      "description": "Construction of Bus shelter, Kannadhasan Nagar",
+      "area_name": "Kannadhasan Nagar",
+      "admin_reference": "division-35, Unit-9, Zone-4",
+      "matched_census_ward": null,
+      "match_confidence": "zone/division reference only",
+      "amount_lakh": 12.5,
+      "status": "recommended",
+      "date": "2026-02-17"
+    },
+    {
+      "id": "CHN-R05",
+      "category": "Normal/Others",
+      "description": "Construction of Bus shelter, Muthamizh Nagar",
+      "area_name": "Muthamizh Nagar",
+      "admin_reference": "division-35, Unit-9, Zone-4",
+      "matched_census_ward": null,
+      "match_confidence": "zone/division reference only, same division as CHN-R04",
+      "amount_lakh": 12.5,
+      "status": "recommended",
+      "date": "2026-02-17"
+    }
+  ]
+}

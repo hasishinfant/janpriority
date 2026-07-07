@@ -12,9 +12,26 @@ class HotspotsScreen extends ConsumerStatefulWidget {
 
 class _HotspotsScreenState extends ConsumerState<HotspotsScreen> {
   GoogleMapController? mapController;
-  
-  // Center camera on Sulikere / Kommaghatta, Bangalore South area where census villages are located
-  final LatLng _center = const LatLng(12.9126, 77.4628);
+
+  LatLng _getCenter(String constituency) {
+    switch (constituency) {
+      case 'Bangalore South': return const LatLng(12.9126, 77.4628);
+      case 'Kozhikode': return const LatLng(11.2588, 75.7804);
+      case 'Mumbai South Central': return const LatLng(19.0178, 72.8478);
+      case 'Chennai North': return const LatLng(13.1145, 80.2878);
+      default: return const LatLng(12.9126, 77.4628);
+    }
+  }
+
+  double _getZoom(String constituency) {
+    switch (constituency) {
+      case 'Bangalore South': return 12.5;
+      case 'Kozhikode': return 12.0;
+      case 'Mumbai South Central': return 12.0;
+      case 'Chennai North': return 12.0;
+      default: return 12.5;
+    }
+  }
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -23,15 +40,25 @@ class _HotspotsScreenState extends ConsumerState<HotspotsScreen> {
   @override
   Widget build(BuildContext context) {
     final localState = ref.watch(localDataProvider);
+    final constituency = localState.activeConstituency;
     final clusters = localState.clusters;
     final mpladsWorks = localState.mpladsWorks;
+
+    // Reactively listen to constituency switches to pan the camera
+    ref.listen<LocalDataState>(localDataProvider, (prev, next) {
+      if (prev?.activeConstituency != next.activeConstituency) {
+        final LatLng target = _getCenter(next.activeConstituency);
+        final double zoom = _getZoom(next.activeConstituency);
+        mapController?.animateCamera(CameraUpdate.newLatLngZoom(target, zoom));
+      }
+    });
 
     final Set<Marker> markers = {};
 
     // 1. Build markers for Citizen submission clusters
     for (var c in clusters) {
-      final lat = (c.centroid?['lat'] ?? 12.9126) as double;
-      final lng = (c.centroid?['lng'] ?? 77.4628) as double;
+      final lat = (c.centroid?['lat'] ?? _getCenter(constituency).latitude) as double;
+      final lng = (c.centroid?['lng'] ?? _getCenter(constituency).longitude) as double;
       
       markers.add(
         Marker(
@@ -80,14 +107,34 @@ class _HotspotsScreenState extends ConsumerState<HotspotsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MPLADS & Citizen Hotspots'),
+        title: Text('Demand Hotspots: $constituency'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () {
-              setState(() {});
-            },
+          // Constituency Selector Dropdown
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+              color: Colors.teal[50],
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.teal[200]!),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: constituency,
+                dropdownColor: Colors.white,
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.teal[900], fontSize: 14),
+                items: ['Bangalore South', 'Kozhikode', 'Mumbai South Central', 'Chennai North']
+                    .map((c) => DropdownMenuItem(value: c, child: Text(c)))
+                    .toList(),
+                onChanged: (val) {
+                  if (val != null) {
+                    ref.read(localDataProvider.notifier).setConstituency(val);
+                  }
+                },
+              ),
+            ),
           ),
+          const SizedBox(width: 16),
         ],
       ),
       body: Stack(
@@ -95,8 +142,8 @@ class _HotspotsScreenState extends ConsumerState<HotspotsScreen> {
           GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 12.5,
+              target: _getCenter(constituency),
+              zoom: _getZoom(constituency),
             ),
             markers: markers,
           ),
@@ -120,7 +167,7 @@ class _HotspotsScreenState extends ConsumerState<HotspotsScreen> {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      'Displaying ${clusters.length} Citizen Grievance Hotspots alongside ${mpladsWorks.where((w) => w['lat'] != null).length} geocoded MPLADS Projects.',
+                      'Displaying ${clusters.length} Citizen Grievance Hotspots alongside ${mpladsWorks.where((w) => w['lat'] != null).length} geocoded MPLADS Projects for $constituency.',
                       style: TextStyle(color: Colors.grey[800]),
                     ),
                     const SizedBox(height: 12),
